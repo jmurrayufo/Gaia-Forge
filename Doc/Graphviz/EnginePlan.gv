@@ -1,0 +1,23 @@
+digraph Test {
+	node [shape=box]
+	User_Input [label="Grab User Input"]
+	Pross_ADE [label="Process\nAttacks/Damage/\nEffects"]
+	Calc_Physics [label="Calculate Physics"]
+	Cull [label="Cull Undeed objects"]
+	Update_Pos [label="Update Positions"]
+	Collision [label="Check for Collisions"]
+	Spawn [label="Spawn new effects"]
+	Calc_Physics2 [label="Update Physics 2"]
+	Load_GFX  [label="Load New Graphics"]
+	Render [label="Render frame"]
+	FPS_Delay  [label="FPS Sync Delay"]
+
+	User_Input -> Pross_ADE -> Calc_Physics -> Cull -> Spawn -> Update_Pos -> Load_GFX -> Render -> FPS_Delay 
+	FPS_Delay -> User_Input [constraint=false,tailport=e,headport=e]
+	Update_Pos -> Collision
+	Collision -> Calc_Physics2
+	Calc_Physics2 -> Update_Pos
+	
+	
+
+}
