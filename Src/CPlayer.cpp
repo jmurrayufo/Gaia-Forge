@@ -3,7 +3,7 @@
 CPlayer::CPlayer() {
 }
 
-bool CPlayer::OnLoad(char* File, int Width, int Height, int MaxFrames) {
+bool CPlayer::OnLoad(const char* File, int Width, int Height, int MaxFrames) {
     if(CEntity::OnLoad(File, Width, Height, MaxFrames) == false) {
         return false;
     }

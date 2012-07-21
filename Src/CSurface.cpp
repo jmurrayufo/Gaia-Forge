@@ -8,6 +8,7 @@ SDL_Surface* CSurface::OnLoad(const char* File) {
     SDL_Surface* Surf_Return = NULL;
 
     if((Surf_Temp = IMG_Load(File)) == NULL) {
+        fprintf(stderr,"IMG_Load call failed on loading \"%s\"\n   %s:%d\n",File,__FILE__,__LINE__);
         return NULL;
     }
 

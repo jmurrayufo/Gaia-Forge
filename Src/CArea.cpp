@@ -12,6 +12,7 @@ bool CArea::OnLoad(const char* File) {
     FILE* FileHandle = fopen(File, "r");
 
     if(FileHandle == NULL) {
+        fprintf(stderr,"fopen call failed.\n   %s:%d\n",__FILE__,__LINE__);
         return false;
     }
 
@@ -20,6 +21,8 @@ bool CArea::OnLoad(const char* File) {
     fscanf(FileHandle, "%s\n", TilesetFile);
 
     if((Surf_Tileset = CSurface::OnLoad(TilesetFile)) == false) {
+        fprintf(stderr,"TilesetSelected: %s\n",TilesetFile);
+        fprintf(stderr,"CSurface::OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
         fclose(FileHandle);
 
         return false;
