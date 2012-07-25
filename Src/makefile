@@ -40,24 +40,24 @@ OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\Gaia-Forge.exe
 
-OBJ_DEBUG += main.o
-OBJ_DEBUG += system\map\CTile.o 
-OBJ_DEBUG += system\map\CSurface.o 
-OBJ_DEBUG += entities\player\CPlayer.o 
-OBJ_DEBUG += system\map\CMap.o 
-OBJ_DEBUG += system\controls\CFPS.o 
-OBJ_DEBUG += system\controls\CEvent.o 
-OBJ_DEBUG += system\controls\CEntityCol.o 
-OBJ_DEBUG += entities\CEntity.o 
-OBJ_DEBUG += system\controls\CCamera.o 
-OBJ_DEBUG += system\map\CArea.o 
-OBJ_DEBUG += capp\CApp_OnRender.o 
-OBJ_DEBUG += capp\CApp_OnLoop.o 
-OBJ_DEBUG += capp\CApp_OnInit.o 
-OBJ_DEBUG += capp\CApp_OnEvent.o 
-OBJ_DEBUG += capp\CApp_OnCleanup.o 
 OBJ_DEBUG += capp\CApp.o 
+OBJ_DEBUG += capp\CApp_OnCleanup.o 
+OBJ_DEBUG += capp\CApp_OnEvent.o 
+OBJ_DEBUG += capp\CApp_OnInit.o 
+OBJ_DEBUG += capp\CApp_OnLoop.o 
+OBJ_DEBUG += capp\CApp_OnRender.o 
 OBJ_DEBUG += entities\CAnimation.o
+OBJ_DEBUG += entities\CEntity.o 
+OBJ_DEBUG += entities\player\CPlayer.o 
+OBJ_DEBUG += main.o
+OBJ_DEBUG += system\controls\CCamera.o 
+OBJ_DEBUG += system\controls\CEntityCol.o 
+OBJ_DEBUG += system\controls\CEvent.o 
+OBJ_DEBUG += system\controls\CFPS.o 
+OBJ_DEBUG += system\map\CArea.o 
+OBJ_DEBUG += system\map\CMap.o 
+OBJ_DEBUG += system\map\CSurface.o 
+OBJ_DEBUG += system\map\CTile.o 
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)\\CTile.o $(OBJDIR_RELEASE)\\CSurface.o $(OBJDIR_RELEASE)\\CPlayer.o $(OBJDIR_RELEASE)\\CMap.o $(OBJDIR_RELEASE)\\CFPS.o $(OBJDIR_RELEASE)\\CEvent.o $(OBJDIR_RELEASE)\\CEntityCol.o $(OBJDIR_RELEASE)\\CEntity.o $(OBJDIR_RELEASE)\\CCamera.o $(OBJDIR_RELEASE)\\CArea.o $(OBJDIR_RELEASE)\\CApp_OnRender.o $(OBJDIR_RELEASE)\\CApp_OnLoop.o $(OBJDIR_RELEASE)\\CApp_OnInit.o $(OBJDIR_RELEASE)\\CApp_OnEvent.o $(OBJDIR_RELEASE)\\CApp_OnCleanup.o $(OBJDIR_RELEASE)\\CApp.o $(OBJDIR_RELEASE)\\CAnimation.o
 
@@ -65,19 +65,15 @@ all: debug release
 
 clean: clean_debug clean_release
 
-before_debug: 
-	cmd /c if not exist bin\\Debug md bin\\Debug
-	cmd /c if not exist $(OBJDIR_DEBUG) md $(OBJDIR_DEBUG)
 
-after_debug: 
 
-debug: before_debug out_debug after_debug
-
-out_debug: $(OBJ_DEBUG) $(DEP_DEBUG)
+debug: $(OBJ_DEBUG) $(DEP_DEBUG)
+	$(warning LINK!)
 	$(LD) $(LDFLAGS_DEBUG) $(LIBDIR_DEBUG) $(OBJ_DEBUG) $(LIB_DEBUG) -o $(OUT_DEBUG)
 
 %.o:%.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $< -o $@
+	$(warning This works!)
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c -o $@ $^
 
 clean_debug: 
 	cmd /c del /f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -90,7 +86,8 @@ before_release:
 
 after_release: 
 
-release: before_release out_release after_release
+#release: before_release out_release after_release
+release: $(warning Release code not yet converted!)
 
 out_release: $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LDFLAGS_RELEASE) $(LIBDIR_RELEASE) $(OBJ_RELEASE) $(LIB_RELEASE) -o $(OUT_RELEASE)
