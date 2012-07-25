@@ -3,11 +3,11 @@
 
 #include <vector>
 
-#include "CArea.h"
+#include "..\system\map\CArea.h"
 #include "CAnimation.h"
-#include "CCamera.h"
-#include "CFPS.h"
-#include "CSurface.h"
+#include "..\system\controls\CCamera.h"
+#include "..\system\controls\CFPS.h"
+#include "..\system\map\CSurface.h"
 
 enum {
     ENTITY_TYPE_GENERIC = 0,

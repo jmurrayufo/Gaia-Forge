@@ -1,7 +1,7 @@
 #ifndef _CPLAYER_H_
     #define _CPLAYER_H_
 
-#include "CEntity.h"
+#include "..\CEntity.h"
 
 class CPlayer : public CEntity {
     public:

@@ -1,4 +1,4 @@
-#include "CEntity.h"
+#include "..\..\entities\CEntity.h"
 
 std::vector<CEntityCol> CEntityCol::EntityColList;
 

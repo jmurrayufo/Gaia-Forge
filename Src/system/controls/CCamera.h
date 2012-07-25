@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-#include "Define.h"
+#include "..\..\Define.h"
 
 enum {
     TARGET_MODE_NORMAL = 0,

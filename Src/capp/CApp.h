@@ -5,15 +5,16 @@
     #define _CAPP_H_
 
 #include <SDL.h>
+#include <stdio.h>
 
-#include "CEntity.h"
-#include "CEvent.h"
-#include "CSurface.h"
-#include "CAnimation.h"
-#include "Define.h"
-#include "CArea.h"
-#include "CCamera.h"
-#include "CPlayer.h"
+#include "..\entities\CEntity.h"
+#include "..\system\controls\CEvent.h"
+#include "..\system\map\CSurface.h"
+#include "..\entities\CAnimation.h"
+#include "..\define.h"
+#include "..\system\map\CArea.h"
+#include "..\system\controls\CCamera.h"
+#include "..\entities\player\CPlayer.h"
 
 //==============================================================================
 class CApp : public CEvent {

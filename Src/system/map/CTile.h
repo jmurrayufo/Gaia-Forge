@@ -1,7 +1,7 @@
 #ifndef _CTILE_H_
     #define _CTILE_H_
 
-#include "Define.h"
+#include "..\..\Define.h"
 
 enum {
    TILE_TYPE_NONE = 0,

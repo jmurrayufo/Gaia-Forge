@@ -12,7 +12,7 @@ LD = g++.exe
 WINDRES = windres.exe
 
 INC =  -I..\\Lib\\include\\SDL
-CFLAGS =  -Wall
+CFLAGS = 
 RESINC = 
 LIBDIR =  -L..\\Lib\\libSDL -L..\\Lib\\libSDLimage
 LIB =  -lmingw32 -lSDLmain -lSDL_image -lSDL
@@ -40,7 +40,24 @@ OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\Gaia-Forge.exe
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)\\CTile.o $(OBJDIR_DEBUG)\\CSurface.o $(OBJDIR_DEBUG)\\CPlayer.o $(OBJDIR_DEBUG)\\CMap.o $(OBJDIR_DEBUG)\\CFPS.o $(OBJDIR_DEBUG)\\CEvent.o $(OBJDIR_DEBUG)\\CEntityCol.o $(OBJDIR_DEBUG)\\CEntity.o $(OBJDIR_DEBUG)\\CCamera.o $(OBJDIR_DEBUG)\\CArea.o $(OBJDIR_DEBUG)\\CApp_OnRender.o $(OBJDIR_DEBUG)\\CApp_OnLoop.o $(OBJDIR_DEBUG)\\CApp_OnInit.o $(OBJDIR_DEBUG)\\CApp_OnEvent.o $(OBJDIR_DEBUG)\\CApp_OnCleanup.o $(OBJDIR_DEBUG)\\CApp.o $(OBJDIR_DEBUG)\\CAnimation.o
+OBJ_DEBUG += main.o
+OBJ_DEBUG += system\map\CTile.o 
+OBJ_DEBUG += system\map\CSurface.o 
+OBJ_DEBUG += entities\player\CPlayer.o 
+OBJ_DEBUG += system\map\CMap.o 
+OBJ_DEBUG += system\controls\CFPS.o 
+OBJ_DEBUG += system\controls\CEvent.o 
+OBJ_DEBUG += system\controls\CEntityCol.o 
+OBJ_DEBUG += entities\CEntity.o 
+OBJ_DEBUG += system\controls\CCamera.o 
+OBJ_DEBUG += system\map\CArea.o 
+OBJ_DEBUG += capp\CApp_OnRender.o 
+OBJ_DEBUG += capp\CApp_OnLoop.o 
+OBJ_DEBUG += capp\CApp_OnInit.o 
+OBJ_DEBUG += capp\CApp_OnEvent.o 
+OBJ_DEBUG += capp\CApp_OnCleanup.o 
+OBJ_DEBUG += capp\CApp.o 
+OBJ_DEBUG += entities\CAnimation.o
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)\\CTile.o $(OBJDIR_RELEASE)\\CSurface.o $(OBJDIR_RELEASE)\\CPlayer.o $(OBJDIR_RELEASE)\\CMap.o $(OBJDIR_RELEASE)\\CFPS.o $(OBJDIR_RELEASE)\\CEvent.o $(OBJDIR_RELEASE)\\CEntityCol.o $(OBJDIR_RELEASE)\\CEntity.o $(OBJDIR_RELEASE)\\CCamera.o $(OBJDIR_RELEASE)\\CArea.o $(OBJDIR_RELEASE)\\CApp_OnRender.o $(OBJDIR_RELEASE)\\CApp_OnLoop.o $(OBJDIR_RELEASE)\\CApp_OnInit.o $(OBJDIR_RELEASE)\\CApp_OnEvent.o $(OBJDIR_RELEASE)\\CApp_OnCleanup.o $(OBJDIR_RELEASE)\\CApp.o $(OBJDIR_RELEASE)\\CAnimation.o
 
@@ -59,56 +76,8 @@ debug: before_debug out_debug after_debug
 out_debug: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LDFLAGS_DEBUG) $(LIBDIR_DEBUG) $(OBJ_DEBUG) $(LIB_DEBUG) -o $(OUT_DEBUG)
 
-$(OBJDIR_DEBUG)\\CTile.o: CTile.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CTile.cpp -o $(OBJDIR_DEBUG)\\CTile.o
-
-$(OBJDIR_DEBUG)\\CSurface.o: CSurface.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CSurface.cpp -o $(OBJDIR_DEBUG)\\CSurface.o
-
-$(OBJDIR_DEBUG)\\CPlayer.o: CPlayer.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CPlayer.cpp -o $(OBJDIR_DEBUG)\\CPlayer.o
-
-$(OBJDIR_DEBUG)\\CMap.o: CMap.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CMap.cpp -o $(OBJDIR_DEBUG)\\CMap.o
-
-$(OBJDIR_DEBUG)\\CFPS.o: CFPS.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CFPS.cpp -o $(OBJDIR_DEBUG)\\CFPS.o
-
-$(OBJDIR_DEBUG)\\CEvent.o: CEvent.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CEvent.cpp -o $(OBJDIR_DEBUG)\\CEvent.o
-
-$(OBJDIR_DEBUG)\\CEntityCol.o: CEntityCol.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CEntityCol.cpp -o $(OBJDIR_DEBUG)\\CEntityCol.o
-
-$(OBJDIR_DEBUG)\\CEntity.o: CEntity.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CEntity.cpp -o $(OBJDIR_DEBUG)\\CEntity.o
-
-$(OBJDIR_DEBUG)\\CCamera.o: CCamera.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CCamera.cpp -o $(OBJDIR_DEBUG)\\CCamera.o
-
-$(OBJDIR_DEBUG)\\CArea.o: CArea.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CArea.cpp -o $(OBJDIR_DEBUG)\\CArea.o
-
-$(OBJDIR_DEBUG)\\CApp_OnRender.o: CApp_OnRender.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp_OnRender.cpp -o $(OBJDIR_DEBUG)\\CApp_OnRender.o
-
-$(OBJDIR_DEBUG)\\CApp_OnLoop.o: CApp_OnLoop.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp_OnLoop.cpp -o $(OBJDIR_DEBUG)\\CApp_OnLoop.o
-
-$(OBJDIR_DEBUG)\\CApp_OnInit.o: CApp_OnInit.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp_OnInit.cpp -o $(OBJDIR_DEBUG)\\CApp_OnInit.o
-
-$(OBJDIR_DEBUG)\\CApp_OnEvent.o: CApp_OnEvent.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp_OnEvent.cpp -o $(OBJDIR_DEBUG)\\CApp_OnEvent.o
-
-$(OBJDIR_DEBUG)\\CApp_OnCleanup.o: CApp_OnCleanup.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp_OnCleanup.cpp -o $(OBJDIR_DEBUG)\\CApp_OnCleanup.o
-
-$(OBJDIR_DEBUG)\\CApp.o: CApp.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CApp.cpp -o $(OBJDIR_DEBUG)\\CApp.o
-
-$(OBJDIR_DEBUG)\\CAnimation.o: CAnimation.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c CAnimation.cpp -o $(OBJDIR_DEBUG)\\CAnimation.o
+%.o:%.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c $< -o $@
 
 clean_debug: 
 	cmd /c del /f $(OBJ_DEBUG) $(OUT_DEBUG)
