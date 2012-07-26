@@ -2,15 +2,40 @@
 #include "CApp.h"
 
 //==============================================================================
-void CApp::OnRender() {
-   SDL_FillRect(Surf_Display,NULL,0);
-   CArea::AreaControl.OnRender(Surf_Display, -CCamera::CameraControl.GetX(), -CCamera::CameraControl.GetY());
-   for(unsigned int i = 0;i < CEntity::EntityList.size();i++) {
-      if(!CEntity::EntityList[i]) continue;
+void CApp::OnRender() 
+{
+    GLenum Error;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    /*
+    glLoadIdentity();
+ 
+    glBegin(GL_QUADS);
+        glColor3f(1, 0, 0); glVertex3f(0, 0, 0);
+        glColor3f(1, 1, 0); glVertex3f(100, 0, 0);
+        glColor3f(1, 0, 1); glVertex3f(100, 100, 0);
+        glColor3f(1, 1, 1); glVertex3f(0, 100, 0);
+    glEnd();
+    */
 
-      CEntity::EntityList[i]->OnRender(Surf_Display);
-   }
-   SDL_Flip(Surf_Display);
+
+    //glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+    if(Error=glGetError())
+        fprintf(stderr,"Error: %d\n",glGetError());
+
+    // Bind the texture object
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
+
+    glBegin(GL_QUADS);
+        glTexCoord2d(    0, 0);         glVertex2f(   100,100);
+        glTexCoord2d(.5, 0);         glVertex2f(128/2+100,100);
+        glTexCoord2d(.5, 1/8.0);    glVertex2f(128/2+100,512/8+100);
+        glTexCoord2d(    0, 1/8.0);    glVertex2f(   100,512/8+100);
+    glEnd();
+    
+    SDL_GL_SwapBuffers();
+    if(Error=glGetError())
+        fprintf(stderr,"Error: %d\n",glGetError());
+    SDL_Delay(1000/59);
 }
 
 //==============================================================================

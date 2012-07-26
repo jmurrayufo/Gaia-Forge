@@ -7,41 +7,72 @@ bool CApp::OnInit() {
         fprintf(stderr,"SDL_Init call failed.\n   %s:%d\n",__FILE__,__LINE__);
         return false;
     }
+    /*
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           8);
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,          8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
+    SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE,            32);
+ 
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,    8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,    8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+    */
 
-    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
+    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL) {
         fprintf(stderr,"SDL_SetVideoMode call failed.\n   %s:%d\n",__FILE__,__LINE__);
         return false;
     }
 
-    if(IMG_Load("./tilesets/1.png")==NULL)
-        fprintf(stderr,"IMG_Load failed.\n   %s:%d\n",__FILE__,__LINE__);
+    unsigned error = lodepng::decode(image,width,height,"gfx\\yoshi.png");
 
-    if(CArea::AreaControl.OnLoad("maps/1.area") == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    fprintf(stdout,"%d\n",error);
+    fprintf(stdout,"%d\n",width);
+    fprintf(stdout,"%d\n",height);
 
-    SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
+    fprintf(stdout,"WORKS\n");
 
-    if(Player.OnLoad("gfx/yoshi.png", 64, 64, 8) == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    fprintf(stdout,"Size of Image:%d\n",image.size());
 
-    if(Player2.OnLoad("gfx/yoshi.png", 64, 64, 8) == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    /*
+    for(int i;i<image.size();i+=4)
+        fprintf(stdout,"%x %x %x %x\n",image[i],image[i+1],image[i+2],image[i+3]);
+    */
+    // Have OpenGL generate a texture object handle for us
+    glGenTextures( 1, &texture );
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
-   Player.X = 100;
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
 
-   CEntity::EntityList.push_back(&Player);
-   CEntity::EntityList.push_back(&Player2);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-   CCamera::CameraControl.TargetMode = TARGET_MODE_CENTER;
-   CCamera::CameraControl.SetTarget(&Player.X, &Player.Y);
+    image.clear();
 
-   return true;
+    glClearColor(0, 0, 0, 0);
+    glClearDepth(1.0f);
+
+    glViewport(0, 0, WWIDTH, WHEIGHT);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    glOrtho(0, WWIDTH, WHEIGHT, 0, 1, -1);
+
+    glMatrixMode(GL_MODELVIEW);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glLoadIdentity();
+
+    return true;
 }
 
 //==============================================================================

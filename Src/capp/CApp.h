@@ -5,7 +5,12 @@
     #define _CAPP_H_
 
 #include <SDL.h>
+#include <gl/gl.h>
+#include <gl/glu.h>
 #include <stdio.h>
+#include <iostream>
+
+#include "..\lib\lodepng.h"
 
 #include "..\entities\CEntity.h"
 #include "..\system\controls\CEvent.h"
@@ -20,9 +25,9 @@
 class CApp : public CEvent {
    private:
       bool  Running;
-
-      CPlayer  Player;
-      CPlayer  Player2;
+      std::vector<unsigned char> image;
+      unsigned int width,height;
+      GLuint texture;         // This is a handle to our texture object
 
       SDL_Surface*   Surf_Display;
 
