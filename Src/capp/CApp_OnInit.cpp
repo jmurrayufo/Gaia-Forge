@@ -32,6 +32,14 @@ bool CApp::OnInit() {
         return false;
     }
 
+    unsigned error = lodepng::decode(image,width,height,"gfx\\yoshi.png");
+
+    fprintf(stdout,"%d\n",error);
+    fprintf(stdout,"%d\n",width);
+    fprintf(stdout,"%d\n",height);
+
+    fprintf(stdout,"WORKS\n");
+
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);
 
@@ -47,7 +55,6 @@ bool CApp::OnInit() {
     glEnable(GL_TEXTURE_2D);
 
     glLoadIdentity();
-
 
     return true;
 }

@@ -8,6 +8,9 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <stdio.h>
+#include <iostream>
+
+#include "..\lib\lodepng.h"
 
 #include "..\entities\CEntity.h"
 #include "..\system\controls\CEvent.h"
@@ -22,6 +25,8 @@
 class CApp : public CEvent {
    private:
       bool  Running;
+      std::vector<unsigned char> image;
+      unsigned int width,height;
 
       SDL_Surface*   Surf_Display;
 
