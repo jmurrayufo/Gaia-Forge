@@ -40,6 +40,7 @@ OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\Gaia-Forge.exe
 
+OBJ_DEBUG += lib\lodepng.o
 OBJ_DEBUG += capp\CApp.o 
 OBJ_DEBUG += capp\CApp_OnCleanup.o 
 OBJ_DEBUG += capp\CApp_OnEvent.o 
