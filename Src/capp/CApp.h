@@ -23,9 +23,6 @@ class CApp : public CEvent {
    private:
       bool  Running;
 
-      CPlayer  Player;
-      CPlayer  Player2;
-
       SDL_Surface*   Surf_Display;
 
    public:
