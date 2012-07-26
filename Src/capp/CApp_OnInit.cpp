@@ -7,7 +7,6 @@ bool CApp::OnInit() {
         fprintf(stderr,"SDL_Init call failed.\n   %s:%d\n",__FILE__,__LINE__);
         return false;
     }
-
     /*
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          8);
@@ -32,13 +31,18 @@ bool CApp::OnInit() {
         return false;
     }
 
-    unsigned error = lodepng::decode(image,width,height,"gfx\\yoshi.png");
+    unsigned error = lodepng::decode(image,width,height,"gfx\\smile.png");
 
     fprintf(stdout,"%d\n",error);
     fprintf(stdout,"%d\n",width);
     fprintf(stdout,"%d\n",height);
 
     fprintf(stdout,"WORKS\n");
+
+    fprintf(stdout,"Size of Image:%d\n",image.size());
+
+    for(int i;i<image.size();i+=4)
+        fprintf(stdout,"%x %x %x %x\n",image[i],image[i+1],image[i+2],image[i+3]);
 
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);
