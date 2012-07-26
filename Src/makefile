@@ -15,7 +15,7 @@ INC =  -I..\\Lib\\include\\SDL
 CFLAGS = 
 RESINC = 
 LIBDIR =  -L..\\Lib\\libSDL -L..\\Lib\\libSDLimage
-LIB =  -lmingw32 -lSDLmain -lSDL_image -lSDL
+LIB =  -lmingw32 -lSDLmain -lSDL_image -lSDL -lopengl32 -lglu32
 LDFLAGS = 
 
 INC_DEBUG =  $(INC)
@@ -72,7 +72,6 @@ debug: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LDFLAGS_DEBUG) $(LIBDIR_DEBUG) $(OBJ_DEBUG) $(LIB_DEBUG) -o $(OUT_DEBUG)
 
 %.o:%.cpp
-	$(warning This works!)
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c -o $@ $^
 
 clean_debug: 
@@ -87,7 +86,7 @@ before_release:
 after_release: 
 
 #release: before_release out_release after_release
-release: $(warning Release code not yet converted!)
+release:
 
 out_release: $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LDFLAGS_RELEASE) $(LIBDIR_RELEASE) $(OBJ_RELEASE) $(LIB_RELEASE) -o $(OUT_RELEASE)
