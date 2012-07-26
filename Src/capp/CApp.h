@@ -27,6 +27,7 @@ class CApp : public CEvent {
       bool  Running;
       std::vector<unsigned char> image;
       unsigned int width,height;
+      GLuint texture;         // This is a handle to our texture object
 
       SDL_Surface*   Surf_Display;
 

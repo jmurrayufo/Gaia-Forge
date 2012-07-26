@@ -25,17 +25,19 @@ void CApp::OnRender()
     if(Error=glGetError())
         fprintf(stderr,"Error: %d\n",glGetError());
 
+    // Bind the texture object
+
     glBegin(GL_QUADS);
         glTexCoord2d(    0, 0);         glVertex2f(   100,100);
-        glTexCoord2d(width, 0);         glVertex2f(width+100,100);
-        glTexCoord2d(width, height);    glVertex2f(width+100,height+100);
-        glTexCoord2d(    0, height);    glVertex2f(   100,height+100);
+        glTexCoord2d(.5, 0);         glVertex2f(128/2+100,100);
+        glTexCoord2d(.5, 1/8.0);    glVertex2f(128/2+100,512/8+100);
+        glTexCoord2d(    0, 1/8.0);    glVertex2f(   100,512/8+100);
     glEnd();
     
     SDL_GL_SwapBuffers();
     if(Error=glGetError())
         fprintf(stderr,"Error: %d\n",glGetError());
-    SDL_Delay(1000/60);
+    SDL_Delay(1000/59);
 }
 
 //==============================================================================
