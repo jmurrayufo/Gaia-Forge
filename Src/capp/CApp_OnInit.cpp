@@ -8,40 +8,48 @@ bool CApp::OnInit() {
         return false;
     }
 
-    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
+    /*
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           8);
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,          8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
+    SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE,            32);
+ 
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,    8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,    8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+    */
+
+    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL) {
         fprintf(stderr,"SDL_SetVideoMode call failed.\n   %s:%d\n",__FILE__,__LINE__);
         return false;
     }
 
-    if(IMG_Load("./tilesets/1.png")==NULL)
-        fprintf(stderr,"IMG_Load failed.\n   %s:%d\n",__FILE__,__LINE__);
+    glClearColor(0, 0, 0, 0);
+    glClearDepth(1.0f);
 
-    if(CArea::AreaControl.OnLoad("maps/1.area") == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    glViewport(0, 0, WWIDTH, WHEIGHT);
 
-    SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-    if(Player.OnLoad("gfx/yoshi.png", 64, 64, 8) == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    glOrtho(0, WWIDTH, WHEIGHT, 0, 1, -1);
 
-    if(Player2.OnLoad("gfx/yoshi.png", 64, 64, 8) == false) {
-        fprintf(stderr,"OnLoad call failed.\n   %s:%d\n",__FILE__,__LINE__);
-        return false;
-    }
+    glMatrixMode(GL_MODELVIEW);
 
-   Player.X = 100;
+    glEnable(GL_TEXTURE_2D);
 
-   CEntity::EntityList.push_back(&Player);
-   CEntity::EntityList.push_back(&Player2);
+    glLoadIdentity();
 
-   CCamera::CameraControl.TargetMode = TARGET_MODE_CENTER;
-   CCamera::CameraControl.SetTarget(&Player.X, &Player.Y);
 
-   return true;
+    return true;
 }
 
 //==============================================================================

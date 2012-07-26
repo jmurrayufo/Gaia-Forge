@@ -5,6 +5,8 @@
     #define _CAPP_H_
 
 #include <SDL.h>
+#include <gl/gl.h>
+#include <gl/glu.h>
 #include <stdio.h>
 
 #include "..\entities\CEntity.h"
