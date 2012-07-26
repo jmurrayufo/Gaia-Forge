@@ -47,6 +47,14 @@ bool CApp::OnInit() {
     */
     // Have OpenGL generate a texture object handle for us
     glGenTextures( 1, &texture );
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    image.clear();
 
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);
