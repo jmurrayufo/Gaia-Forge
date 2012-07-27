@@ -3,6 +3,7 @@
 /*.layout
 /*.sublime-project
 /*.sublime-workspace
+/*.sublime-build
 /gfx/
 /maps/
 /tilesets/
