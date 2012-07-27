@@ -20,7 +20,7 @@ void CApp::OnLoop() {
       }
    }
 
-CEntityCol::EntityColList.clear();
+   CEntityCol::EntityColList.clear();
 
    CFPS::FPSControl.OnLoop();
    char Buffer[255];
