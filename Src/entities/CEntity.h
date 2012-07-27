@@ -2,6 +2,10 @@
     #define _CENTITY_H_
 
 #include <vector>
+#include <gl/gl.h>
+#include <gl/glu.h>
+
+#include "..\lib\lodepng.h"
 
 #include "..\system\map\CArea.h"
 #include "CAnimation.h"
@@ -30,8 +34,12 @@ class CEntity {
     protected:
         CAnimation      Anim_Control;
 
-        SDL_Surface*    Surf_Entity;
+        SDL_Surface*    Surf_Entity; //To be removed
+        GLuint          texture;         // This is a handle to our texture object
 
+    // Texture Related Junk
+        unsigned int    tex_height;
+        unsigned int    tex_width;
     public:
         float           X;
         float           Y;
@@ -59,17 +67,15 @@ class CEntity {
         float        MaxSpeedX;
         float        MaxSpeedY;
 
-   protected:
-      int             CurrentFrameCol;
-      int             CurrentFrameRow;
+    protected:
 
-   protected:
-      int        Col_X;
-      int        Col_Y;
-      int        Col_Width;
-      int        Col_Height;
-   protected:
-      bool    CanJump;
+        int     CurrentFrameCol;
+        int     CurrentFrameRow;
+        int     Col_X;
+        int     Col_Y;
+        int     Col_Width;
+        int     Col_Height;
+        bool    CanJump;
 
    public:
       bool     Jump();
@@ -81,9 +87,13 @@ class CEntity {
     public:
         virtual bool OnLoad(const char* File, int Width, int Height, int MaxFrames);
 
+        virtual bool OnLoadGL();
+
         virtual void OnLoop();
 
         virtual void OnRender(SDL_Surface* Surf_Display);
+
+        virtual void OnRenderGL();
 
         virtual void OnCleanup();
 

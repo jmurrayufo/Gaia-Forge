@@ -4,57 +4,27 @@
 //==============================================================================
 bool CApp::OnInit() {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-        fprintf(stderr,"SDL_Init call failed.\n   %s:%d\n",__FILE__,__LINE__);
+        fprintf(stderr,"%s:%d\n    SDL_Init call failed.\n",__FILE__,__LINE__);
         return false;
     }
-    /*
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            8);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          8);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           8);
-    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,          8);
- 
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
-    SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE,            32);
- 
-    SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE,        8);
-    SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,    8);
-    SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,        8);
-    SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,    8);
- 
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
- 
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
-    */
 
     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL) {
-        fprintf(stderr,"SDL_SetVideoMode call failed.\n   %s:%d\n",__FILE__,__LINE__);
+        fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
         return false;
     }
+    for (int i = 0; i < 5; i++)
+    {
+        CEntity *mule = new CEntity;
+        mule->X=i*128;
+        mule->Y=i*128;
 
-    unsigned error = lodepng::decode(image,width,height,"gfx\\yoshi.png");
+        CEntity::EntityList.push_back(mule);
+    }
 
-    fprintf(stdout,"%d\n",error);
-    fprintf(stdout,"%d\n",width);
-    fprintf(stdout,"%d\n",height);
-
-    fprintf(stdout,"WORKS\n");
-
-    fprintf(stdout,"Size of Image:%d\n",image.size());
-
-    /*
-    for(int i;i<image.size();i+=4)
-        fprintf(stdout,"%x %x %x %x\n",image[i],image[i+1],image[i+2],image[i+3]);
-    */
-    // Have OpenGL generate a texture object handle for us
-    glGenTextures( 1, &texture );
-    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
-
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-    image.clear();
+    for(unsigned int i = 0;i < CEntity::EntityList.size();i++) {
+        if(!CEntity::EntityList[i]) continue;
+        CEntity::EntityList[i]->OnLoadGL();
+    }
 
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);
@@ -76,3 +46,23 @@ bool CApp::OnInit() {
 }
 
 //==============================================================================
+
+    // These options were suggested to use for SDL_GL stuff. Not sure if we need it?
+    /*
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,          8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,           8);
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,          8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,          16);
+    SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE,            32);
+ 
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,    8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,        8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,    8);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
+ 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+    */

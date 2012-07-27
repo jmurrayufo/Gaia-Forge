@@ -3,9 +3,10 @@
 std::vector<CEntity*>     CEntity::EntityList;
 
 
-CEntity::CEntity() {
+CEntity::CEntity() 
+{
 
-   CanJump=false;
+    CanJump=false;
 
     Surf_Entity = NULL;
 
@@ -42,10 +43,12 @@ CEntity::CEntity() {
     Col_Height = 0;
 }
 
-CEntity::~CEntity() {
+CEntity::~CEntity() 
+{
 }
 
-bool CEntity::Jump() {
+bool CEntity::Jump() 
+{
     if(CanJump == false) return false;
 
     SpeedY = -MaxSpeedY;
@@ -53,7 +56,8 @@ bool CEntity::Jump() {
     return true;
 }
 
-bool CEntity::OnLoad(const char* File, int Width, int Height, int MaxFrames) {
+bool CEntity::OnLoad(const char* File, int Width, int Height, int MaxFrames) 
+{
     if((Surf_Entity = CSurface::OnLoad(File)) == NULL) {
         return false;
     }
@@ -68,7 +72,36 @@ bool CEntity::OnLoad(const char* File, int Width, int Height, int MaxFrames) {
     return true;
 }
 
-void CEntity::OnLoop() {
+bool CEntity::OnLoadGL()
+{
+    // Holder for the image file, will be deleted once we are loaded!
+
+    std::vector<unsigned char> image;
+
+    unsigned error = lodepng::decode(image,tex_width,tex_height,"gfx\\yoshi.png");
+
+    if(error)
+    {
+        fprintf(stderr,"lodepng::decode error: %s\n",lodepng_error_text(error));
+        return false;
+    }
+
+    glGenTextures( 1, &texture );
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, tex_width, tex_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    image.clear();
+
+    return true;
+}
+
+void CEntity::OnLoop() 
+{
+    return; // DEBUG LINE TO HOLD THEM IN PLACE!
     //We're not Moving
     if(MoveLeft == false && MoveRight == false) {
         StopMove();
@@ -102,6 +135,20 @@ void CEntity::OnRender(SDL_Surface* Surf_Display) {
     if(Surf_Entity == NULL || Surf_Display == NULL) return;
 
     CSurface::OnDraw(Surf_Display, Surf_Entity, X - CCamera::CameraControl.GetX(), Y - CCamera::CameraControl.GetY(), CurrentFrameCol * Width, (CurrentFrameRow + Anim_Control.GetCurrentFrame()) * Height, Width, Height);
+}
+
+
+
+void CEntity::OnRenderGL(){
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
+
+    glBegin(GL_QUADS);
+        glTexCoord2d( 0,     0);    glVertex2f(X,Y);
+        glTexCoord2d(.5,     0);    glVertex2f(X+128,Y);
+        glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y+128);
+        glTexCoord2d( 0, 1/8.0);    glVertex2f(X,Y+128);
+    glEnd();
+
 }
 
 void CEntity::OnCleanup() {
