@@ -22,9 +22,18 @@ bool CApp::OnInit() {
     }
 
     for(unsigned int i = 0;i < CEntity::EntityList.size();i++) {
+        std::vector<CEntity*>::iterator tmp=CEntity::EntityList.begin()+i;
+
         if(!CEntity::EntityList[i]) continue;
-        CEntity::EntityList[i]->OnLoadGL();
+        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi3.png")==false)
+        {
+            fprintf(stderr,"%s:%d\n    Failed to OnLoadGL(char) for i=%d\n",__FILE__,__LINE__,i);
+            CEntity::EntityList.erase(tmp);
+            i--;
+        }
+
     }
+    // fprintf(stdout,"CApp::OnInit success! Got %d elements loaded!\n",CEntity::EntityList.size()); //DEBUG code!
 
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);

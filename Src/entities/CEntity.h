@@ -89,6 +89,8 @@ class CEntity {
 
         virtual bool OnLoadGL();
 
+        virtual bool OnLoadGL(const char* File);
+
         virtual void OnLoop();
 
         virtual void OnRender(SDL_Surface* Surf_Display);

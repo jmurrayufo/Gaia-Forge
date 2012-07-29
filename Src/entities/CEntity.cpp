@@ -99,6 +99,33 @@ bool CEntity::OnLoadGL()
     return true;
 }
 
+bool CEntity::OnLoadGL(const char* File)
+{
+    // Holder for the image file, will be deleted once we are loaded!
+
+    std::vector<unsigned char> image;
+
+    unsigned error = lodepng::decode(image,tex_width,tex_height,File);
+
+    if(error)
+    {
+        fprintf(stderr,"lodepng::decode error: %s\n",lodepng_error_text(error));
+        return false;
+    }
+
+    glGenTextures( 1, &texture );
+    glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, tex_width, tex_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    image.clear();
+
+    return true;
+}
+
 void CEntity::OnLoop() 
 {
     return; // DEBUG LINE TO HOLD THEM IN PLACE!
