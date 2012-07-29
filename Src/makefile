@@ -66,11 +66,14 @@ all: debug release
 
 clean: clean_debug clean_release
 
+debug: before_debug debug_run 
 
-
-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
+debug_run: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(warning LINK!)
 	$(LD) $(LDFLAGS_DEBUG) $(LIBDIR_DEBUG) $(OBJ_DEBUG) $(LIB_DEBUG) -o $(OUT_DEBUG)
+
+before_debug: 
+	cmd /c if not exist bin\\Debug md bin\\Debug
 
 %.o:%.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c -o $@ $^
