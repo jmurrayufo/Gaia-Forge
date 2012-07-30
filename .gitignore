@@ -13,3 +13,5 @@
 
 # Media
 #*.png
+
+.DS_Store
