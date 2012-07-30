@@ -22,13 +22,13 @@ bool CApp::OnInit() {
     }
 
     for(unsigned int i = 0;i < CEntity::EntityList.size();i++) {
-        std::vector<CEntity*>::iterator tmp=CEntity::EntityList.begin()+i;
+        std::vector<CEntity*>::iterator CurrentEnt=CEntity::EntityList.begin()+i;
 
         if(!CEntity::EntityList[i]) continue;
-        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi3.png")==false)
+        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi.png")==false)
         {
             fprintf(stderr,"%s:%d\n    Failed to OnLoadGL(char) for i=%d\n",__FILE__,__LINE__,i);
-            CEntity::EntityList.erase(tmp);
+            CEntity::EntityList.erase(CurrentEnt);
             i--;
         }
 
