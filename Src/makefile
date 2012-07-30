@@ -40,7 +40,6 @@ OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\Gaia-Forge.exe
 
-OBJ_DEBUG += lib\lodepng.o
 OBJ_DEBUG += capp\CApp.o 
 OBJ_DEBUG += capp\CApp_OnCleanup.o 
 OBJ_DEBUG += capp\CApp_OnEvent.o 
@@ -50,11 +49,13 @@ OBJ_DEBUG += capp\CApp_OnRender.o
 OBJ_DEBUG += entities\CAnimation.o
 OBJ_DEBUG += entities\CEntity.o 
 OBJ_DEBUG += entities\player\CPlayer.o 
+OBJ_DEBUG += lib\lodepng.o
 OBJ_DEBUG += main.o
 OBJ_DEBUG += system\controls\CCamera.o 
 OBJ_DEBUG += system\controls\CEntityCol.o 
 OBJ_DEBUG += system\controls\CEvent.o 
 OBJ_DEBUG += system\controls\CFPS.o 
+OBJ_DEBUG += system\map\CChunk.o 
 OBJ_DEBUG += system\map\CMap.o 
 OBJ_DEBUG += system\map\CTile.o 
 
