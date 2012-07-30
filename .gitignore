@@ -14,8 +14,11 @@
 # Media
 #*.png
 
-.DS_Store
-
+# IDE Porject Files
+## Sublime Text2
 *.sublime-project
-
 *.sublime-workspace
+
+# OS Files
+## OSx
+.DS_Store
