@@ -6,7 +6,7 @@
 \brief Maintain the map of a given world. Allow the system to talk to the chunks.
 
 CMap will keep a collection of CChunks somehow, and allow the rest of the system
-to accesss them. 
+to access them. 
 */
 
 class CMap {

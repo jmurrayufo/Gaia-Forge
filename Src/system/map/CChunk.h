@@ -11,7 +11,7 @@ This class maintains a large segment of tile space in the game. It will load up,
 
 class CChunk {
 
-    // TODO: What does X and Y represet? Lower/upper, left/right corner? This should NOT 
+    // TODO: What does X and Y represent? Lower/upper, left/right corner? This should NOT 
     //      be the middle of the chunk as this would add lots more math to worry about. 
 
     //! X location of chunk
