@@ -3,6 +3,9 @@
 
 #include <SDL.h>
 
+// TODO: We need a "Speed Factor" here. This should allow us to set a given speed of an
+//      animation in meters/second and have it speed up/slow down WITH the entity. COOL!
+
 class CAnimation {
     private:
         int    CurrentFrame;
@@ -11,6 +14,9 @@ class CAnimation {
 
     private:
         int     FrameRate; //Milliseconds
+
+        //! Speed of the animation in M/S
+        int     SpeedFactor;
 
         long    OldTime;
 
