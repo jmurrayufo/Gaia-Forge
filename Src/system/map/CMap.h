@@ -1,28 +1,19 @@
 #ifndef _CMAP_H_
     #define _CMAP_H_
 
-#include <SDL.h>
-#include <vector>
 
-#include "CTile.h"
+/*!
+\brief Maintain the map of a given world. Allow the system to talk to the chunks.
+
+CMap will keep a collection of CChunks somehow, and allow the rest of the system
+to accesss them. 
+*/
 
 class CMap {
-   public:
-      SDL_Surface* Surf_Tileset;
-
-   private:
-      std::vector<CTile> TileList;
 
    public:
       CMap();
-
-   public:
-      bool OnLoad(char* File);
-
-      void OnRender(int MapX, int MapY);
-
-   public:
-      CTile*    GetTile(int X, int Y);
+      ~CMap();
 };
 
 #endif
