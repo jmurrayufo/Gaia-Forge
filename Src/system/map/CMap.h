@@ -19,7 +19,7 @@ class CMap {
    public:
       bool OnLoad(char* File);
 
-      void OnRender(SDL_Surface* Surf_Display, int MapX, int MapY);
+      void OnRender(int MapX, int MapY);
 
    public:
       CTile*    GetTile(int X, int Y);
