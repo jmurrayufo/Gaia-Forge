@@ -57,7 +57,9 @@ bool CEntity::Jump()
 }
 
 bool CEntity::OnLoad(const char* File, int Width, int Height, int MaxFrames) 
-{
+{   
+    // TODO: This basic code needs to be copied over to the OnLoadGL code once we have a working map system
+    /*
     if((Surf_Entity = CSurface::OnLoad(File)) == NULL) {
         return false;
     }
@@ -68,7 +70,7 @@ bool CEntity::OnLoad(const char* File, int Width, int Height, int MaxFrames)
     this->Height = Height;
 
     Anim_Control.MaxFrames = MaxFrames;
-
+    */
     return true;
 }
 
@@ -161,7 +163,8 @@ void CEntity::OnLoop()
 void CEntity::OnRender(SDL_Surface* Surf_Display) {
     if(Surf_Entity == NULL || Surf_Display == NULL) return;
 
-    CSurface::OnDraw(Surf_Display, Surf_Entity, X - CCamera::CameraControl.GetX(), Y - CCamera::CameraControl.GetY(), CurrentFrameCol * Width, (CurrentFrameRow + Anim_Control.GetCurrentFrame()) * Height, Width, Height);
+    // TODO: Get this style of code moved over to the GL system
+    //CSurface::OnDraw(Surf_Display, Surf_Entity, X - CCamera::CameraControl.GetX(), Y - CCamera::CameraControl.GetY(), CurrentFrameCol * Width, (CurrentFrameRow + Anim_Control.GetCurrentFrame()) * Height, Width, Height);
 }
 
 
@@ -309,6 +312,8 @@ bool CEntity::Collides(int oX, int oY, int oW, int oH) {
 }
 
 bool CEntity::PosValid(int NewX, int NewY) {
+    // TODO: This system will require the map system to be in place (wtf is a tile?)
+    /*
     bool Return = true;
 
     int StartX     = (NewX + Col_X) / TILE_SIZE;
@@ -335,10 +340,10 @@ bool CEntity::PosValid(int NewX, int NewY) {
             }
         }
     }
-
-    return Return;
+    */
+    return true;
 }
-
+/*
 bool CEntity::PosValidTile(CTile* Tile) {
     if(Tile == NULL) {
         return true;
@@ -350,7 +355,7 @@ bool CEntity::PosValidTile(CTile* Tile) {
 
     return true;
 }
-
+*/
 bool CEntity::PosValidEntity(CEntity* Entity, int NewX, int NewY) {
     if(this != Entity && Entity != NULL && Entity->Dead == false &&
         Entity->Flags ^ ENTITY_FLAG_MAPONLY &&

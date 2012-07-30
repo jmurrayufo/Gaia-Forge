@@ -55,9 +55,7 @@ OBJ_DEBUG += system\controls\CCamera.o
 OBJ_DEBUG += system\controls\CEntityCol.o 
 OBJ_DEBUG += system\controls\CEvent.o 
 OBJ_DEBUG += system\controls\CFPS.o 
-OBJ_DEBUG += system\map\CArea.o 
 OBJ_DEBUG += system\map\CMap.o 
-OBJ_DEBUG += system\map\CSurface.o 
 OBJ_DEBUG += system\map\CTile.o 
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)\\CTile.o $(OBJDIR_RELEASE)\\CSurface.o $(OBJDIR_RELEASE)\\CPlayer.o $(OBJDIR_RELEASE)\\CMap.o $(OBJDIR_RELEASE)\\CFPS.o $(OBJDIR_RELEASE)\\CEvent.o $(OBJDIR_RELEASE)\\CEntityCol.o $(OBJDIR_RELEASE)\\CEntity.o $(OBJDIR_RELEASE)\\CCamera.o $(OBJDIR_RELEASE)\\CArea.o $(OBJDIR_RELEASE)\\CApp_OnRender.o $(OBJDIR_RELEASE)\\CApp_OnLoop.o $(OBJDIR_RELEASE)\\CApp_OnInit.o $(OBJDIR_RELEASE)\\CApp_OnEvent.o $(OBJDIR_RELEASE)\\CApp_OnCleanup.o $(OBJDIR_RELEASE)\\CApp.o $(OBJDIR_RELEASE)\\CAnimation.o

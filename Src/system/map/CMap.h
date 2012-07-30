@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "CTile.h"
-#include "CSurface.h"
 
 class CMap {
    public:

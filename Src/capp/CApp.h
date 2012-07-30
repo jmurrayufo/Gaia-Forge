@@ -14,10 +14,8 @@
 
 #include "..\entities\CEntity.h"
 #include "..\system\controls\CEvent.h"
-#include "..\system\map\CSurface.h"
 #include "..\entities\CAnimation.h"
 #include "..\define.h"
-#include "..\system\map\CArea.h"
 #include "..\system\controls\CCamera.h"
 #include "..\entities\player\CPlayer.h"
 

@@ -30,6 +30,8 @@ bool CMap::OnLoad(char* File) {
 }
 
 void CMap::OnRender(SDL_Surface* Surf_Display, int MapX, int MapY) {
+    // TODO: This system needs to be ported over to the GL system once we have a map system in place!
+    /*
     if(Surf_Tileset == NULL) return;
 
     int TilesetWidth  = Surf_Tileset->w / TILE_SIZE;
@@ -55,6 +57,7 @@ void CMap::OnRender(SDL_Surface* Surf_Display, int MapX, int MapY) {
             ID++;
         }
     }
+    */
 }
 
 CTile* CMap::GetTile(int X, int Y) {

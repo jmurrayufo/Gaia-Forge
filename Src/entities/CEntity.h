@@ -7,11 +7,9 @@
 
 #include "..\lib\lodepng.h"
 
-#include "..\system\map\CArea.h"
 #include "CAnimation.h"
 #include "..\system\controls\CCamera.h"
 #include "..\system\controls\CFPS.h"
-#include "..\system\map\CSurface.h"
 
 enum {
     ENTITY_TYPE_GENERIC = 0,
@@ -114,7 +112,7 @@ class CEntity {
     private:
         bool     PosValid(int NewX, int NewY);
 
-        bool     PosValidTile(CTile* Tile);
+        //bool     PosValidTile(CTile* Tile);
 
         bool     PosValidEntity(CEntity* Entity, int NewX, int NewY);
 };
