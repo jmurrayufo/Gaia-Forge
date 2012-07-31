@@ -13,16 +13,21 @@ class CAnimation {
         int     FrameInc;
 
     private:
-        int     FrameRate; //Milliseconds
+        //! Rate for frames to render. This is in Frames/s 
+        //! \note This might be easier to store as ms/frame in text, as these numbers give a good range and are easier then a float to process. 
+        float     FrameRate;
 
         //! Speed of the animation in M/S
-        int     SpeedFactor;
+        float     SpeedFactor;
 
+        //! Last time we called the frame
         long    OldTime;
 
     public:
+        //! Total frames in the animation
         int    MaxFrames;
 
+        //! Is this animation playable forward and backward?
         bool    Oscillate;
 
     public:
