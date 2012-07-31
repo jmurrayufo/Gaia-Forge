@@ -172,12 +172,19 @@ void CEntity::OnRender(SDL_Surface* Surf_Display) {
 void CEntity::OnRenderGL(){
     glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
+    glEnable(GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glBegin(GL_QUADS);
         glTexCoord2d( 0,     0);    glVertex2f(X,Y);
         glTexCoord2d(.5,     0);    glVertex2f(X+128,Y);
         glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y+128);
         glTexCoord2d( 0, 1/8.0);    glVertex2f(X,Y+128);
     glEnd();
+
+    int Ticks = SDL_GetTicks();
+
+    GLDebug::DrawLine(X,Y,X+cos(Ticks/1000.f)*100,Y+sin(Ticks/1000.f)*100);
 
 }
 

@@ -12,11 +12,11 @@ bool CApp::OnInit() {
         fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
         return false;
     }
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 1; i++)
     {
         CEntity *mule = new CEntity;
-        mule->X=i*128;
-        mule->Y=i*128;
+        mule->X=i*128+300;
+        mule->Y=i*128+300;
 
         CEntity::EntityList.push_back(mule);
     }
@@ -25,7 +25,7 @@ bool CApp::OnInit() {
         std::vector<CEntity*>::iterator CurrentEnt=CEntity::EntityList.begin()+i;
 
         if(!CEntity::EntityList[i]) continue;
-        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi.png")==false)
+        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi2.png")==false)
         {
             fprintf(stderr,"%s:%d\n    Failed to OnLoadGL(char) for i=%d\n",__FILE__,__LINE__,i);
             CEntity::EntityList.erase(CurrentEnt);
@@ -50,6 +50,12 @@ bool CApp::OnInit() {
     glEnable(GL_TEXTURE_2D);
 
     glLoadIdentity();
+
+    float tmpColor[4];
+
+    glGetFloatv(GL_CURRENT_COLOR,tmpColor);
+
+    fprintf(stderr,"%s:%d\n    Current Colors: %f %f %f %f\n",__FILE__,__LINE__,tmpColor[0],tmpColor[1],tmpColor[2],tmpColor[3]);
 
     return true;
 }

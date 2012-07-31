@@ -4,12 +4,14 @@
 #include <vector>
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <math.h> // DEBUG
 
 #include "..\lib\lodepng.h"
 
 #include "CAnimation.h"
 #include "..\system\controls\CCamera.h"
 #include "..\system\controls\CFPS.h"
+#include "..\system\render\GLDebug.h"
 
 enum {
     ENTITY_TYPE_GENERIC = 0,
