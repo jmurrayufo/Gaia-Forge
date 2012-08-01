@@ -32,12 +32,13 @@ class CEntity {
         static std::vector<CEntity*>    EntityList;
 
     protected:
+        //! Store the animation information to correctly draw each frame. 
         CAnimation      Anim_Control;
 
         SDL_Surface*    Surf_Entity; //To be removed
         GLuint          texture;         // This is a handle to our texture object
 
-    // Texture Related Junk
+        // Texture sizes. These should eventaully be moved to the texture handling class. 
         unsigned int    tex_height;
         unsigned int    tex_width;
     public:
@@ -114,7 +115,7 @@ class CEntity {
     private:
         bool     PosValid(int NewX, int NewY);
 
-        //bool     PosValidTile(CTile* Tile);
+        //bool     PosValidTile(CTile* Tile); // Cuurently removed becuase we dont have a tile system in place...
 
         bool     PosValidEntity(CEntity* Entity, int NewX, int NewY);
 };

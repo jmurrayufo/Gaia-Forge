@@ -323,12 +323,15 @@ bool CEntity::PosValid(int NewX, int NewY) {
     /*
     bool Return = true;
 
+    // NOTE: What do these tile size things mean??
     int StartX     = (NewX + Col_X) / TILE_SIZE;
     int StartY     = (NewY + Col_Y) / TILE_SIZE;
 
+    // NOTE: More TILE_SIZE confusion 
     int EndX    = ((NewX + Col_X) + Width - Col_Width - 1)         / TILE_SIZE;
     int EndY    = ((NewY + Col_Y) + Height - Col_Height - 1)    / TILE_SIZE;
-
+    
+    // Check through the space calculated above to see if there is a tile there. 
     for(int iY = StartY;iY <= EndY;iY++) {
         for(int iX = StartX;iX <= EndX;iX++) {
             CTile* Tile = CArea::AreaControl.GetTile(iX * TILE_SIZE, iY * TILE_SIZE);
