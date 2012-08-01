@@ -1,7 +1,7 @@
 #include "CTexture.h"
 
 // We must declare static members someplace, here works!
-std::vector<CTexture> CTexture::textureList;
+std::vector<CTexture*> CTexture::textureList;
 
 CTexture::CTexture()
 {
@@ -20,27 +20,31 @@ CTexture::~CTexture()
 
 CTexture* CTexture::InitTexture(const char* File)
 {
-    CTexture tmpTexture;
+    CTexture *tmpTexture,*tmpTextureLocation;
 
-    if(CheckTexture(File)==0)
+
+    if((tmpTextureLocation=FindTexture(File))==NULL)
     {
         fprintf(stdout,"NEW FILE!\n");
-        tmpTexture.count++;
-        tmpTexture.textureFile=std::string(File);
+
+        tmpTexture=new CTexture;
+
+        tmpTexture->count++;
+        tmpTexture->textureFile=std::string(File);
         CTexture::textureList.push_back(tmpTexture);
 
         // Get the iterator (.end())
         // Dereference it into a CTexture
         // Reference the address and return
-        return &(*(CTexture::textureList.end())); 
+        return *(CTexture::textureList.end()); 
     }
     else
     {
         fprintf(stdout,"OLD FILE!\n");
-        fprintf(stdout,"   Got: %d\n",CheckTexture(File));
-        // We don't yet FIND the old texture.... CheckTexture might need to get changed!
-        // Maybe we need a FindTexture function that returns a pointer to a found texture?
-        return (CTexture*)NULL;
+
+        tmpTextureLocation->count++;
+
+        return tmpTextureLocation;
     }
 
     return (CTexture*)NULL;
@@ -55,9 +59,9 @@ int CTexture::CheckTexture(const char* File)
 {
     bool foundTexture=false;
     std::string tmpFile=std::string(File);
-    for (std::vector<CTexture>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
+    for (std::vector<CTexture*>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
     {
-        if(tmpFile == i->textureFile)
+        if(tmpFile == (*i)->textureFile)
             foundTexture=true;
     }
     return foundTexture;
@@ -67,10 +71,10 @@ CTexture* CTexture::FindTexture(const char* File)
 {
     CTexture* foundTexture=NULL;
     std::string tmpFile=std::string(File);
-    for (std::vector<CTexture>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
+    for (std::vector<CTexture*>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
     {
-        if(tmpFile == i->textureFile)
-            foundTexture=&(*i); // FIXME: I dunno if this line works yet...
+        if(tmpFile == (*i)->textureFile)
+            foundTexture=(*i); // FIXME: I dunno if this line works yet...
     }
     return foundTexture;
 }

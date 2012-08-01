@@ -18,7 +18,7 @@ class CTexture
 //  that we aught not to modify.....
 public: 
     //! Static vector that SHOULD contain all members of this class
-    static std::vector<CTexture> textureList;
+    static std::vector<CTexture*> textureList;
 
     //! String of the file that this texture was loaded from
     std::string textureFile;
