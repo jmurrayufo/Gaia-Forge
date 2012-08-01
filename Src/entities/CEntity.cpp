@@ -172,10 +172,10 @@ void CEntity::OnRender(SDL_Surface* Surf_Display) {
 void CEntity::OnRenderGL(){
     glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
-    glEnable(GL_BLEND);
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);                                 //Enables alphatextures in image files
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //effects blending of colors around alpha channel
 
-    glBegin(GL_QUADS);
+    glBegin(GL_QUADS);  //Im going to draw stuff state machine call
         glTexCoord2d( 0,     0);    glVertex2f(X,Y);
         glTexCoord2d(.5,     0);    glVertex2f(X+128,Y);
         glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y+128);
