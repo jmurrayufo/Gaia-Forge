@@ -4,7 +4,8 @@
 #include <vector>
 #include <gl/gl.h>
 #include <gl/glu.h>
-#include <string.h> // Needed for memcmp();
+#include <string>
+#include <stdio.h>  // Needed for debuggin
 
 /*! \brief Maintain list of loaded textures
 
@@ -20,7 +21,7 @@ public:
     static std::vector<CTexture> textureList;
 
     //! String of the file that this texture was loaded from
-    char *textureFile;
+    std::string textureFile;
 
     //! This is a handle to our texture object
     GLuint texture;

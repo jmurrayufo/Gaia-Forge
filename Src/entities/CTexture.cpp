@@ -5,6 +5,11 @@ std::vector<CTexture> CTexture::textureList;
 
 CTexture::CTexture()
 {
+    textureFile="";
+    texture=NULL;
+    x=0;
+    y=0;
+    count=0;
     //Void
 }
 
@@ -15,9 +20,34 @@ CTexture::~CTexture()
 
 CTexture* CTexture::InitTexture(const char* File)
 {
-    CTexture *tmpTexture=NULL;
+    CTexture tmpTexture;
 
-    return tmpTexture;
+    if(CheckTexture(File)==0)
+    {
+        fprintf(stdout,"NEW FILE!\n");
+        tmpTexture.count++;
+        tmpTexture.textureFile=std::string(File);
+        CTexture::textureList.push_back(tmpTexture);
+
+        // Get the iterator (.end())
+        // Dereference it into a CTexture
+        // Reference the address and return
+        return &(*(CTexture::textureList.end())); 
+    }
+    else
+    {
+        fprintf(stdout,"OLD FILE!\n");
+        fprintf(stdout,"   Got: %d\n",CheckTexture(File));
+        // We don't yet FIND the old texture.... CheckTexture might need to get changed!
+        // Maybe we need a FindTexture function that returns a pointer to a found texture?
+        return (CTexture*)NULL;
+    }
+
+    
+
+    
+
+    return (CTexture*)NULL;
 }
 
 bool CTexture::DeleteTexture(void)
@@ -28,9 +58,10 @@ bool CTexture::DeleteTexture(void)
 int CTexture::CheckTexture(const char* File)
 {
     bool foundTexture=false;
+    std::string tmpFile=std::string(File);
     for (std::vector<CTexture>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
     {
-        if(memcmp(File,i->textureFile,256)!=0)
+        if(tmpFile == i->textureFile)
             foundTexture=true;
     }
     return foundTexture;
