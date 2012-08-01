@@ -43,10 +43,6 @@ CTexture* CTexture::InitTexture(const char* File)
         return (CTexture*)NULL;
     }
 
-    
-
-    
-
     return (CTexture*)NULL;
 }
 
@@ -66,6 +62,19 @@ int CTexture::CheckTexture(const char* File)
     }
     return foundTexture;
 }
+
+CTexture* CTexture::FindTexture(const char* File)
+{
+    CTexture* foundTexture=NULL;
+    std::string tmpFile=std::string(File);
+    for (std::vector<CTexture>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
+    {
+        if(tmpFile == i->textureFile)
+            foundTexture=&(*i); // FIXME: I dunno if this line works yet...
+    }
+    return foundTexture;
+}
+
 
 unsigned int CTexture::GetX(void)
 {

@@ -77,6 +77,16 @@ public:
     int CheckTexture(const char* File);
 
     /*!
+        \brief Find a given texture
+    
+        \param[in] File A null terminated file name to attempt to check. 
+
+        \return Pointer to locationed CTexture. 
+            Returns NULL if nothing is found.  
+    */
+    CTexture* FindTexture(const char* File);
+
+    /*!
         \brief Get the current X value.
 
         \return The current X value. 
