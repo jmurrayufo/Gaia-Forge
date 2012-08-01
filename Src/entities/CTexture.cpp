@@ -1,7 +1,7 @@
 #include "CTexture.h"
 
 // We must declare static members someplace, here works!
-std::vector<CTexture> textureList;
+std::vector<CTexture> CTexture::textureList;
 
 CTexture::CTexture()
 {
@@ -28,7 +28,7 @@ bool CTexture::DeleteTexture(void)
 int CTexture::CheckTexture(const char* File)
 {
     bool foundTexture=false;
-    for (std::vector<CTexture>::iterator i = CTexture::textureList.begin(); i != CTexture::textureList.end(); ++i)
+    for (std::vector<CTexture>::iterator i = textureList.begin(); i != CTexture::textureList.end(); ++i)
     {
         if(memcmp(File,i->textureFile,256)!=0)
             foundTexture=true;
