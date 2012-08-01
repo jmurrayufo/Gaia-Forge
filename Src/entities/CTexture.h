@@ -4,6 +4,7 @@
 #include <vector>
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <string.h> // Needed for memcmp();
 
 /*! \brief Maintain list of loaded textures
 
