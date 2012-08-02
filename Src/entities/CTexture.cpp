@@ -20,73 +20,100 @@ CTexture::~CTexture()
 
 CTexture* CTexture::InitTexture(const char* File)
 {
+    // To CTexture pointers. On to hold the pointer we look for, the other is a mule.
     CTexture *tmpTexture,*tmpTextureLocation;
 
+    // Attempt to find the texture with FindTexture()
     if((tmpTextureLocation=FindTexture(File))==NULL)
     {
+
+        //We did NOT find the texture, create a new one!
         tmpTexture=new CTexture;
+
+        // Initialize it
         tmpTexture->count++;
         tmpTexture->textureFile=std::string(File);
+
+        //Push the texture onto the back of the vector and return a pointer to it. 
         CTexture::textureList.push_back(tmpTexture);
         return CTexture::textureList.back(); 
     }
     else
     {
+        //We did find the texture, add one to its counter and return it. 
         tmpTextureLocation->count++;
         return tmpTextureLocation;
     }
+    //This should never be reached, and keeps the compiler happy. 
     return (CTexture*)NULL;
 }
 
 bool CTexture::DeleteTexture(void)
 {
+    // Pointer to use with the GetTextureIterator. This function mallocs memory that we MUST free. 
     std::vector<CTexture*>::iterator *loc;
 
+    // Decrement the counter, as one last thing now points to it. 
     this->count--;
 
+    // Determine if we were the lass texture to be deleted. 
     if(count<1)
     {
         loc=GetTextureIterator(textureFile.c_str());
         textureList.erase(*loc);
         delete loc;
+
+        // LOL! We tell the object to DELETE IT SELF!!!
         delete this;
+
+        // We were the last object!
         return true;
     }
+    // We weren't the last object.... 
     return false;
 }
 
 int CTexture::CheckTexture(const char* File)
 {
-    bool foundTexture=false;
+    // Search through the vector
     std::string tmpFile=std::string(File);
     for (std::vector<CTexture*>::iterator i = textureList.begin(); i != textureList.end(); ++i)
     {
+        // Compare the strings. They function as the id for the object and should be unique. 
         if(tmpFile == (*i)->textureFile)
-            foundTexture=true;
+            return true;
     }
-    return foundTexture;
+    // We iterated through the entire vector and did not find anything, return false.
+    return false;
 }
 
 CTexture* CTexture::FindTexture(const char* File)
 {
-    CTexture* foundTexture=NULL;
+    // Search through the vector
     std::string tmpFile=std::string(File);
     for (std::vector<CTexture*>::iterator i = textureList.begin(); i != textureList.end(); ++i)
     {
+        // Compare the strings. They function as the id for the object and should be unique. 
         if(tmpFile == (*i)->textureFile)
-            foundTexture=(*i); // FIXME: I dunno if this line works yet...
+            return (*i);
     }
-    return foundTexture;
+    // We iterated though the entire vector, and did not find the texture. 
+    return NULL;
 }
 
 std::vector<CTexture*>::iterator* CTexture::GetTextureIterator(const char* File)
-{
+{    
+    // Search through the vector
     std::vector<CTexture*>::iterator *loc=NULL;
     std::string tmpFile=std::string(File);
     for (std::vector<CTexture*>::iterator i = textureList.begin(); i != textureList.end(); ++i)
     {
         if(tmpFile == (*i)->textureFile)
         {
+            // We found the texture! Return a new iterator to it. 
+            // BE AWARE! This new iterator needs to be cleaned at some point!
+            // This iterator MAY become invalid if the vector is reallocated as things are 
+            //  added and removed. 
             loc=new std::vector<CTexture*>::iterator(i);
             break;
         }

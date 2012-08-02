@@ -50,7 +50,6 @@ public:
             avoid stepping on another objects texture! 
 
     */
-    // TODO: Comment this function
     CTexture* InitTexture(const char* File);
 
     /*! 
@@ -61,7 +60,6 @@ public:
 
         \return True if the texture was deleted successfully. False when there was an error. 
     */
-    // TODO: Comment this function
     bool DeleteTexture(void);
 
     /*!
@@ -73,7 +71,6 @@ public:
             and returns negatives on error. 
     */
     // TODO: Should we have a GLuint version of this? 
-    // TODO: Comment this function
     int CheckTexture(const char* File);
 
     /*!
@@ -84,7 +81,6 @@ public:
         \return Pointer to locationed CTexture. 
             Returns NULL if nothing is found.  
     */
-    // TODO: Comment this function
     CTexture* FindTexture(const char* File);
 
     /*! 
@@ -97,7 +93,6 @@ public:
 
         \return Iterator to texture. Will be NULL on failure  
     */
-    // TODO: Comment this function
     std::vector<CTexture*>::iterator* GetTextureIterator(const char* File);
 
     /*!
