@@ -50,7 +50,7 @@ public:
             avoid stepping on another objects texture! 
 
     */
-    // TODO: Write this function into CTexture.cpp
+    // TODO: Comment this function
     CTexture* InitTexture(const char* File);
 
     /*! 
@@ -61,7 +61,7 @@ public:
 
         \return True if the texture was deleted successfully. False when there was an error. 
     */
-    // TODO: Write this function into CTexture.cpp
+    // TODO: Comment this function
     bool DeleteTexture(void);
 
     /*!
@@ -73,7 +73,7 @@ public:
             and returns negatives on error. 
     */
     // TODO: Should we have a GLuint version of this? 
-        // TODO: Write this function into CTexture.cpp
+    // TODO: Comment this function
     int CheckTexture(const char* File);
 
     /*!
@@ -84,7 +84,21 @@ public:
         \return Pointer to locationed CTexture. 
             Returns NULL if nothing is found.  
     */
+    // TODO: Comment this function
     CTexture* FindTexture(const char* File);
+
+    /*! 
+        \brief Get iterator to given texture
+    
+        \param[in] File A null terminated file name to attempt to check. 
+
+        \warning This function creates an iterator in memory! You will need to delete this
+            iterator or you will have a MEMORY LEAK!!!
+
+        \return Iterator to texture. Will be NULL on failure  
+    */
+    // TODO: Comment this function
+    std::vector<CTexture*>::iterator* GetTextureIterator(const char* File);
 
     /*!
         \brief Get the current X value.
