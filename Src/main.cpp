@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <SDL.h>
 #include "capp/CApp.h"
-#include "entities/CTexture.h"
 
 //Johns Test comment
 //==============================================================================
