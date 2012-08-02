@@ -14,7 +14,7 @@
 
 #include "..\entities\CEntity.h"
 #include "..\system\controls\CEvent.h"
-#include "..\entities\CAnimation.h"
+#include "..\system\graphics\CAnimation.h"
 #include "..\define.h"
 #include "..\system\controls\CCamera.h"
 #include "..\entities\player\CPlayer.h"
