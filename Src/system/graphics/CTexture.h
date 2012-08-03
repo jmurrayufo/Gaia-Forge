@@ -2,6 +2,7 @@
     #define _CTEXTURE_STATE_H_
 
 #include <vector>
+#include <map>
 #include <string>
 #include <stdio.h>  // Needed for debuggin
 
@@ -33,6 +34,9 @@ public:
     //! Associated video memory texture
     VidMem *vidMemTexture;
 
+    //! Map of the associated states and textures
+    std::map<int,VidMem*> vidTextureMap;
+
     //! What heading does the creature have?
     //! \note This has differnet meanings depending on the value in laterialTexture. If 
     //!     true, this will function as a boolean value. True will flip a texture, false 
@@ -53,15 +57,19 @@ public:
 
     bool OnLoad(const char* File);
 
-    bool OnLoad(string File);
+    bool OnLoad(std::string File);
 
     void OnLoop(void);
 
     void OnRenderGL(void);
 
+    void OnCleanup(void);
+
     bool SetState(int state);
 
-    /*!
+    int GetState(void);
+
+    /*! Configure a given state for the CTexture
     \param[in] state    Set the type of state we are going to use
     \param[in] x        Top left corner pixel to use for this state
     \param[in] y        Top left corner pixel to use for this state
