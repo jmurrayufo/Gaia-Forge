@@ -6,14 +6,14 @@ CTile::CTile()
     collideable = false;
 }
 
-CTile::CTile(short TileID, bool Collideable = 1)
+CTile::CTile(short TileID, bool Collideable)
 {
     tileID = TileID;
     collideable = Collideable;
 }
 
 
-CTile::Collision()
+bool CTile::Collision()
 {
     return collideable;
 }
