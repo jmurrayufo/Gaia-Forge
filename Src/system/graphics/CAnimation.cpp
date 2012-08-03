@@ -1,52 +1,65 @@
 #include "CAnimation.h"
 
-CAnimation::CAnimation() {
-   CurrentFrame    = 0;
-   MaxFrames       = 0;
-   FrameInc        = 1;
-
-   FrameRate       = 100; //Milliseconds
-   OldTime         = 0;
-
-   oscillate       = false;
+CAnimation::CAnimation() 
+{
+   currentFrame=0;
+   frameInc=true;
+   frameRate=1000;
+   defaultSpeed=10;
+   oldTime=0;
+   x=0;
+   y=0;
+   tiles=1;
+   cols=1;
+   oscillate=false;
 }
 
-void CAnimation::OnAnimate() {
-   if((Uint32)(OldTime + FrameRate) > SDL_GetTicks()) {
+void CAnimation::OnAnimate() 
+{
+   // Check to see if enough time has passed to update the animation
+   if((Uint32)oldTime + frameRate > SDL_GetTicks()) 
+   {
       return;
    }
 
-   OldTime = SDL_GetTicks();
+   // New frame! Save the time
+   oldTime = SDL_GetTicks();
+   currentFrame += frameInc ? 1 : -1 ; // Any chance to use the ternary is fun!
 
-   CurrentFrame += FrameInc;
-
-   if(oscillate) {
-      if(FrameInc > 0) {
-         if(CurrentFrame >= MaxFrames) {
-            FrameInc = -FrameInc;
-         }
-      } else {
-         if(CurrentFrame <= 0) {
-            FrameInc = -FrameInc;
-         }
+   if(oscillate) 
+   {
+      if(currentFrame == tiles || currentFrame == 0) 
+      {
+         frameInc = !frameInc;
       }
    } else {
-      if(CurrentFrame >= MaxFrames) {
-         CurrentFrame = 0;
+      if(currentFrame == tiles) 
+      {
+         currentFrame = 0;
       }
    }
 }
 
-void CAnimation::SetFrameRate(int Rate) {
-   FrameRate = Rate;
+void CAnimation::SetFrameRate(int Rate) 
+{
+   frameRate = Rate;
 }
 
-void CAnimation::SetCurrentFrame(int Frame) {
-   if(Frame < 0 || Frame >= MaxFrames) return;
+void CAnimation::SetCurrentFrame(int Frame) 
+{
+   if(Frame < 0 || Frame >= tiles) return;
 
-   CurrentFrame = Frame;
+   currentFrame = Frame;
 }
 
-int CAnimation::GetCurrentFrame() {
-   return CurrentFrame;
+int CAnimation::GetCurrentFrame() 
+{
+   assert(cols==1); // We should NEVER call this function if we have columns! 
+   return currentFrame;
+}
+
+int CAnimation::GetCurrentFrame(int& X,int& Y)
+{
+   X = x + currentFrame % cols;
+   Y = y + currentFrame / cols;
 }

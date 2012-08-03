@@ -79,8 +79,6 @@ public:
     \param[in] state    Set the type of state we are going to use
     \param[in] x        Top left corner pixel to use for this state
     \param[in] y        Top left corner pixel to use for this state
-    \param[in] width    Width of each tile
-    \param[in] height   Height of each tile
     \param[in] tiles    (optional) Number of tiles in the animation
     \param[in] cols     (optional) Number of columns for the animation
     \param[in] oscillation  (optional) Does this animation repeat back to front?

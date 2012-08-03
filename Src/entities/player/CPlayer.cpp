@@ -24,6 +24,7 @@ void CPlayer::OnCleanup() {
 }
 
 void CPlayer::OnAnimate() {
+    /*
     if(SpeedX != 0) {
         Anim_Control.MaxFrames = 8;
     }else{
@@ -31,6 +32,7 @@ void CPlayer::OnAnimate() {
     }
 
     CEntity::OnAnimate();
+    */
 }
 
 bool CPlayer::OnCollision(CEntity* Entity) {

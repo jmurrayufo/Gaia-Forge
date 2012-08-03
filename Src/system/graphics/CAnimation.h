@@ -2,29 +2,27 @@
     #define _CANIMATION_H_
 
 #include <SDL.h>
+#include <assert.h>
 
 // TODO: We need a "Speed Factor" here. This should allow us to set a given speed of an
 //      animation in meters/second and have it speed up/slow down WITH the entity. COOL!
 
 class CAnimation {
     private:
-        int CurrentFrame;
-        int FrameInc;
+        //! TODO: Comment this
+        int currentFrame;
 
-    private:
-        //! Rate for frames to render. This is in Frames/s 
-        //! \note This might be easier to store as ms/frame in text, as these numbers give a good range and are easier then a float to process. 
-        float   FrameRate;
+        //! TODO: Comment this
+        bool frameInc;
+
+        //! Rate for frames to render. This is in ms/frame
+        float   frameRate;
 
         //! Speed of the animation in M/S
-        float   DefaultSpeed;
+        float   defaultSpeed;
 
         //! Last time we called the frame
-        long    OldTime;
-
-    public:
-        //! Total frames in the animation
-        int MaxFrames;
+        long    oldTime;
 
     // Sub Texture Details
     public:
@@ -63,7 +61,7 @@ class CAnimation {
 
         int GetCurrentFrame();
 
-        int GetCurrentFrame(int& x,int& y);
+        int GetCurrentFrame(int& X,int& Y);
 };
 
 #endif
