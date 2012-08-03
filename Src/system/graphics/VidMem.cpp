@@ -60,6 +60,10 @@ bool VidMem::DeleteTexture(void)
     if(count<1)
     {
         loc=GetTextureIterator(textureFile.c_str());
+        if(loc==NULL)
+            std::cerr << __FILE__ << __LINE__ << endl <<
+                    "    GetTextureIterator returned a NULL! This is VERY bad..." << endl;
+
         textureList.erase(*loc);
         delete loc;
 
