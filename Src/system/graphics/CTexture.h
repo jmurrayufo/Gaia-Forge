@@ -23,6 +23,11 @@ enum {
     TEXTURE_STATE_TALKING
 };
 
+struct pointer_group {
+    VidMem*     vidMemTexture;
+    CAnimation* animation;
+}pointer_group;
+
 /*! \brief Maintain the current associated texture. 
 
 This could be an anything drawn from an image file. CTexture holds and manages the texture
