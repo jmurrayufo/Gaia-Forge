@@ -7,6 +7,7 @@
 #include <stdio.h>  // Needed for debuggin
 
 #include "VidMem.h"
+#include "CAnimation.h"
 
 /*! \brief Possible states for an entity to be in
 */
@@ -37,6 +38,9 @@ public:
     //! Map of the associated states and textures
     std::map<int,VidMem*> vidTextureMap;
 
+    //! Map of the associated states and animations
+    std::map<int,CAnimation*> animationMap;
+
     //! What heading does the creature have?
     //! \note This has differnet meanings depending on the value in laterialTexture. If 
     //!     true, this will function as a boolean value. True will flip a texture, false 
@@ -61,6 +65,8 @@ public:
 
     void OnLoop(void);
 
+    void OnLoop(int speed);
+
     void OnRenderGL(void);
 
     void OnCleanup(void);
@@ -79,7 +85,12 @@ public:
     \param[in] cols     (optional) Number of columns for the animation
     \param[in] oscillation  (optional) Does this animation repeat back to front?
     */
-    bool ConfigState(int state,int x,int y,int width,int height,int tiles=1,int cols=1,bool oscillation=false);
+    bool ConfigState(   int state,
+                        int x,
+                        int y,
+                        int tiles=1,
+                        bool oscillation=false,
+                        int cols=1);
 
 };
 

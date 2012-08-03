@@ -8,7 +8,7 @@ CAnimation::CAnimation() {
    FrameRate       = 100; //Milliseconds
    OldTime         = 0;
 
-   Oscillate       = false;
+   oscillate       = false;
 }
 
 void CAnimation::OnAnimate() {
@@ -20,7 +20,7 @@ void CAnimation::OnAnimate() {
 
    CurrentFrame += FrameInc;
 
-   if(Oscillate) {
+   if(oscillate) {
       if(FrameInc > 0) {
          if(CurrentFrame >= MaxFrames) {
             FrameInc = -FrameInc;
