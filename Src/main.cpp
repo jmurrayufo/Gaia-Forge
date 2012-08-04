@@ -2,6 +2,7 @@
 #include <ostream>
 #include <stdio.h>
 #include <SDL.h>
+#include <boost/property_tree/ptree.hpp>
 #include "capp/CApp.h"
 
 //Johns Test comment

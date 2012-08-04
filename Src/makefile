@@ -11,7 +11,7 @@ AR = ar.exe
 LD = g++.exe
 WINDRES = windres.exe
 
-INC =  -I..\\Lib\\include\\SDL
+INC =  -I..\\Lib\\include\\SDL -I..\\Lib\\include\\
 CFLAGS = 
 RESINC = 
 LIBDIR =  -L..\\Lib\\libSDL -L..\\Lib\\libSDLimage
