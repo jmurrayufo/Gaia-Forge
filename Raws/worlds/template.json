@@ -1,0 +1,27 @@
+{
+    "Name":"World Name",
+    "Type":"WorldTypeEnum",
+    "Zones": {
+        "Zone1":{
+            "Biome":false,
+            "MinHeight":0,
+            "MaxHeight":1024
+        },
+        "Zone2":{
+            "Biome":true,
+            "MinHeight":1024,
+            "MaxHeight":-1,
+            "MinDistCenter":0,
+            "MaxDistCenter":-1,
+            "BlockList":{},
+            "MineralLists":{},
+            "Background":{},
+            "Mobs":{},
+            "ChestLoot":{},
+            "Plants":{}
+        },
+        "Zone3":{
+            "Biome":true
+        }
+    }
+}
