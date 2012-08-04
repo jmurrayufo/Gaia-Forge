@@ -1,0 +1,45 @@
+{
+    "Name": "Zombie",
+    "Type": "Mob",
+    "AI": {
+        "Style":"Ground",
+        "IQ":2.5
+    },
+    "Stats": {
+        "HP": 1500,
+        "DMG": 5,
+        "AtkSpd": 1.4,
+        "Movespd": 100,
+        "Defense": 3
+    },
+    "Loot": {
+        "Tables": {
+            "Money1": true,
+            "Money2": 50,
+            "Items": {
+                "Weapons": true,
+                "WeaponsMagic": true
+            }
+        }
+    },
+    "Textures": {
+        "FrameSize":128,
+        "Stand":{
+            "Frames":1,
+            "File":"grf\\mobs\\basic\\zombie1.png"
+        },
+        "Walk":{
+            "Frames":5,
+            "Oscillate":true,
+            "FrameRate":16,
+            "SpeedFactor":1,
+            "File":"grf\\mobs\\basic\\zombie2.png"
+        },
+        "Attack":{
+            "Frames":3,
+            "Oscillate":false,
+            "FrameRate":16,
+            "File":"grf\\mobs\\basic\\zombie3.png"
+        }
+    }
+}
