@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <SDL.h>
 #include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 #include "capp/CApp.h"
 
 //Johns Test comment
