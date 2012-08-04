@@ -1,0 +1,25 @@
+{
+    "Name": "Zombie",
+    "Type": "Mob",
+    "Class": "Ground Trooper",
+    "Stats": {
+        "HP": 1500,
+        "DMG": 5,
+        "AtkSpd": 1.4,
+        "Movespd": 100,
+        "Defense": 3
+    },
+    "Loot": {
+        "Tables": {
+            "Money1": true,
+            "Money2": 50,
+            "Items": {
+                "Weapons": true,
+                "WeaponsMagic": true
+            }
+        }
+    },
+    "Textures": {
+        "Standing":"grf\\mobs\\basic\\zombie1.png"
+    }
+}
