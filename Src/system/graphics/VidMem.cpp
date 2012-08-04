@@ -6,7 +6,7 @@ std::vector<VidMem*> VidMem::textureList;
 VidMem::VidMem()
 {
     textureFile="";
-    texture=NULL;
+    texture=0;
     x=0;
     y=0;
     count=0;
