@@ -11,11 +11,11 @@ AR = ar.exe
 LD = g++.exe
 WINDRES = windres.exe
 
-INC =  -I..\\Lib\\include\\SDL
+INC =  -I..\\Lib\\include\\SDL -I..\\Lib\\include\\
 CFLAGS = 
 RESINC = 
 LIBDIR =  -L..\\Lib\\libSDL -L..\\Lib\\libSDLimage
-LIB =  -lmingw32 -lSDLmain -lSDL_image -lSDL -lopengl32 -lglu32
+LIB =  -lmingw32 -lSDLmain -lSDL -lopengl32 -lglu32
 LDFLAGS = 
 
 INC_DEBUG =  $(INC)

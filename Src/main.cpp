@@ -1,8 +1,11 @@
 
 #include <ostream>
+#include <string>
 #include <stdio.h>
 #include <SDL.h>
 #include "capp/CApp.h"
+
+using namespace std;
 
 //Johns Test comment
 //==============================================================================
