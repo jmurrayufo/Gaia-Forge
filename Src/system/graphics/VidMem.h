@@ -2,10 +2,10 @@
     #define _VIDMEM_H_
 
 #include <vector>
+#include <ostream>
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <string>
-#include <stdio.h>
 
 /*! \brief Maintain list of loaded textures in video memory
 

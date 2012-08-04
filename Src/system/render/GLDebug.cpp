@@ -5,6 +5,19 @@
 GLfloat GLDebug::lineWidth = 1;
 
 //==============================================================================
+
+
+
+GLDebug::GLDebug()
+{
+    lineWidth=1;
+    colors[0]=1;
+    colors[1]=1;
+    colors[2]=1;
+    colors[3]=1;
+}
+
+
 void GLDebug::DrawLine( float x1 , float y1 , float x2 , float y2)
 {
 

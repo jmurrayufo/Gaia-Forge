@@ -5,9 +5,12 @@
 #include <gl/glu.h>
 
 class GLDebug {
-
 public:
+
+    GLDebug();
     static GLfloat lineWidth;
+
+    float colors[4];
 
     static void DrawLine(float x1,float y1,float x2, float y2);
 

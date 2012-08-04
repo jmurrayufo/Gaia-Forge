@@ -52,6 +52,7 @@ bool VidMem::DeleteTexture(void)
 {
     // Pointer to use with the GetTextureIterator. This function mallocs memory that we MUST free. 
     std::vector<VidMem*>::iterator *loc;
+    std::cerr << "Test" << std::endl;
 
     // Decrement the counter, as one last thing now points to it. 
     this->count--;
@@ -61,8 +62,7 @@ bool VidMem::DeleteTexture(void)
     {
         loc=GetTextureIterator(textureFile.c_str());
         if(loc==NULL)
-            std::cerr << __FILE__ << __LINE__ << endl <<
-                    "    GetTextureIterator returned a NULL! This is VERY bad..." << endl;
+            std::cout << __FILE__ << __LINE__ << std::endl << "    GetTextureIterator returned a NULL! This is VERY bad..." << std::endl;
 
         textureList.erase(*loc);
         delete loc;
