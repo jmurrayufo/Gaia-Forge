@@ -2,7 +2,7 @@
     #define _VIDMEM_H_
 
 #include <vector>
-#include <ostream>
+#include <iostream>
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <string>

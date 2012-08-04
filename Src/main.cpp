@@ -1,5 +1,5 @@
 
-#include <ostream>
+#include <iostream>
 #include <string>
 #include <stdio.h>
 #include <SDL.h>
