@@ -4,19 +4,12 @@
 #include <SDL.h>
 
 #include "capp/CApp.h"
-#include "system/noise/Noise.h"
 
 using namespace std;
 
 //Johns Test comment
 //==============================================================================
 int main(int argc, char* argv[]) {
-    Noise x;
-
-    x.test();
-
-    return(0);
-
     CApp theApp;
     fprintf(stdout,"Booted main()\n   %s:%d\n",__FILE__,__LINE__);
     return theApp.OnExecute();
