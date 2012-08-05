@@ -12,11 +12,11 @@ bool CApp::OnInit() {
         fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
         return false;
     }
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 2; i++)
     {
         CEntity *mule = new CEntity;
-        mule->X=i*128+300;
-        mule->Y=i*128+300;
+        mule->X=i*64+300;
+        mule->Y=300;
 
         CEntity::EntityList.push_back(mule);
     }
