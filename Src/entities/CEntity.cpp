@@ -170,10 +170,15 @@ void CEntity::OnRender(SDL_Surface* Surf_Display) {
 
 
 void CEntity::OnRenderGL(){
+
+
+    glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
     //Enables alpha textures in image files
     glEnable(GL_BLEND);
+
+    glColor4f(1,1,1,1);
 
     //effects blending of colors around alpha channel
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
@@ -187,7 +192,6 @@ void CEntity::OnRenderGL(){
     glEnd();
 
     int Ticks = SDL_GetTicks();
-
     GLDebug::DrawLine(X,Y,X+cos(Ticks/1000.f)*100,Y+sin(Ticks/1000.f)*100);
 
 }

@@ -35,7 +35,7 @@ bool CApp::OnInit() {
     }
     // fprintf(stdout,"CApp::OnInit success! Got %d elements loaded!\n",CEntity::EntityList.size()); //DEBUG code!
 
-    glClearColor(0, 0, 0, 0);
+    glClearColor(0, 0, 0, 1);
     glClearDepth(1.0f);
 
     glViewport(0, 0, WWIDTH, WHEIGHT);
