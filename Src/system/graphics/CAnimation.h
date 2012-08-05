@@ -8,10 +8,10 @@
 class CAnimation 
 {
 public:
-    //! TODO: Comment this
+    //! Current frame index
     int currentFrame;
 
-    //! TODO: Comment this
+    //! Frame increment. If false, frames will count down instead. 
     bool frameInc;
 
     //! Rate for frames to render. This is in ms/frame
