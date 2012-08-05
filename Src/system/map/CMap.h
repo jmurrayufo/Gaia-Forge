@@ -14,6 +14,25 @@ class CMap {
    public:
       CMap();
       ~CMap();
+
+      //! Called to load a map file.
+      void OnLoad(const char* File);
+
+      //! Save the map file to a given location.
+      void OnSave(const char* File);
+
+      //! Save the map file to it's default location
+      void OnSave();
+
+      //! Called every frame. This should take care of dynamic load/free of chunks.
+      void OnLoop();
+
+      //! Render the current scene. 
+      //! This includes Background, BackgroundTiles, Tiles, and water/lava (probably in that order).
+      void OnRenderGL();
+
+      //! This map file is no longer needed, close down. 
+      void OnCleanup();
 };
 
 #endif
