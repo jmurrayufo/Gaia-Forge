@@ -105,12 +105,12 @@ class CEntity {
         virtual bool OnCollision(CEntity* Entity);
 
     public:
-        void    OnMove(float MoveX, float MoveY);
+        void OnMove(float MoveX, float MoveY);
 
-        void     StopMove();
+        void StopMove();
 
     public:
-        bool    Collides(int oX, int oY, int oW, int oH);
+        bool Collides(int oX, int oY, int oW, int oH);
 
     private:
         bool     PosValid(int NewX, int NewY);
