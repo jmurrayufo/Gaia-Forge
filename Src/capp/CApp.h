@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <math.h>
 
 #include "..\lib\lodepng.h"
 
