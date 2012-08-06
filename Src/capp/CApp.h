@@ -4,23 +4,25 @@
 #ifndef _CAPP_H_
     #define _CAPP_H_
 
-#include <SDL.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
-#include <stdio.h>
 #include <iostream>
-#include <string>
-#include <sstream>
 #include <math.h>
+#include <SDL.h>
+#include <sstream>
+#include <stdio.h>
+#include <string>
 
 #include "..\lib\lodepng.h"
 
+#include "..\define.h"
 #include "..\entities\CEntity.h"
+#include "..\entities\player\CPlayer.h"
+#include "..\system\controls\CCamera.h"
 #include "..\system\controls\CEvent.h"
 #include "..\system\graphics\CAnimation.h"
-#include "..\define.h"
-#include "..\system\controls\CCamera.h"
-#include "..\entities\player\CPlayer.h"
+#include "..\system\render\GLDebug.h"
+#include "..\system\noise\Noise.h"
 
 //==============================================================================
 class CApp : public CEvent {
