@@ -13,6 +13,7 @@ bool CApp::OnInit() {
         return false;
     }
 
+    // Add some test entities 
     for (int i = 0; i < 2; i++)
     {
         CEntity *mule = new CEntity;
@@ -22,6 +23,7 @@ bool CApp::OnInit() {
         CEntity::EntityList.push_back(mule);
     }
 
+    // Load a file into the test entities
     for(unsigned int i = 0;i < CEntity::EntityList.size();i++) {
         std::vector<CEntity*>::iterator CurrentEnt=CEntity::EntityList.begin()+i;
 
@@ -33,9 +35,13 @@ bool CApp::OnInit() {
             CEntity::EntityList.erase(CurrentEnt);
             i--;
         }
-
     }
 
+    // Init GLDebug system
+    GLDebug::Init();
+
+
+    // Init GL system
     glClearColor(0, 0, 0, 1);
 
     glClearDepth(1.0f);
