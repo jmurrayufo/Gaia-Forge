@@ -23,7 +23,7 @@ void CApp::OnRender()
     x.InterpType = NOISE_INTERP_CUBIC;
     for (int i = 0; i < WWIDTH; ++i)
     {
-        GLDebug::DrawPoint(i+0.01,x.Perlin1d(i + SDL_GetTicks()/20.f) + WHEIGHT/2);
+        GLDebug::DrawPoint(i,x.Perlin1d(i + SDL_GetTicks()/20.f) + WHEIGHT/2);
     }
 
     SDL_GL_SwapBuffers();
