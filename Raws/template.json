@@ -7,7 +7,8 @@
         "DMG": 5,
         "AtkSpd": 1.4,
         "Movespd": 100,
-        "Defense": 3
+        "Defense": 3,
+        "Level": 1
     },
     "Loot": {
         "Tables": {
