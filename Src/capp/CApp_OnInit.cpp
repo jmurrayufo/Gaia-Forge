@@ -58,23 +58,15 @@ bool CApp::OnInit() {
 
     glEnable(GL_TEXTURE_2D);
 
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-glHint(GL_POINT_SMOOTH, GL_NICEST);
-glHint(GL_LINE_SMOOTH, GL_NICEST);
-glHint(GL_POLYGON_SMOOTH, GL_NICEST);
+    glHint(GL_POINT_SMOOTH, GL_NICEST);
+    glHint(GL_LINE_SMOOTH, GL_NICEST);
+    glHint(GL_POLYGON_SMOOTH, GL_NICEST);
 
-glEnable(GL_POINT_SMOOTH);
-glEnable(GL_LINE_SMOOTH);
-glEnable(GL_POLYGON_SMOOTH);
+    glEnable(GL_POINT_SMOOTH);
+    glEnable(GL_LINE_SMOOTH);
+    glEnable(GL_POLYGON_SMOOTH);
 
     glLoadIdentity();
-
-    float tmpColor[4];
-
-    glGetFloatv(GL_CURRENT_COLOR,tmpColor);
-
-    fprintf(stderr,"%s:%d\n    Current Colors: %f %f %f %f\n",__FILE__,__LINE__,tmpColor[0],tmpColor[1],tmpColor[2],tmpColor[3]);
-
     return true;
 }
 
