@@ -58,6 +58,7 @@ bool CApp::OnInit() {
 
     glEnable(GL_TEXTURE_2D);
 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
 glHint(GL_POINT_SMOOTH, GL_NICEST);
 glHint(GL_LINE_SMOOTH, GL_NICEST);
 glHint(GL_POLYGON_SMOOTH, GL_NICEST);
