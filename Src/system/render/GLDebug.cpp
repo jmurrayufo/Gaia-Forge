@@ -45,9 +45,9 @@ void GLDebug::DrawPoint(float x1,float y1)
 void GLDebug::DrawPoint(float x1,float y1,GLfloat* funcColors)
 {
     glDisable(GL_TEXTURE_2D);
-    glLineWidth(lineWidth);
     glColor4f(funcColors[0],funcColors[1],funcColors[2],funcColors[3]);
     glBlendFunc(GL_DST_ALPHA,GL_ONE_MINUS_DST_ALPHA);
+    glPointSize(lineWidth);
     glBegin(GL_POINTS);
         glVertex2f(x1, y1);
     glEnd();
