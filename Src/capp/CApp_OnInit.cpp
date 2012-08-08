@@ -52,7 +52,7 @@ bool CApp::OnInit() {
 
     glLoadIdentity();
 
-    glOrtho(0, WWIDTH, WHEIGHT, 0, 1, -1);
+    glOrtho(0, WWIDTH, 0, WHEIGHT, 1, -1);
 
     glMatrixMode(GL_MODELVIEW);
 
