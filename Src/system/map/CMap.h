@@ -9,6 +9,13 @@ CMap will keep a collection of CChunks somehow, and allow the rest of the system
 to access them. 
 */
 
+/*
+   TODO: We need to decide who handles the physics in the chunks. Blocks that "drop" or
+      move somehow need to be dealt with when they leave a chunk. I say we give the chunk
+      a OnLoop() function that somehow returns a vector of tiles that are leaving it's 
+      space. 
+*/
+
 class CMap {
 
    public:
