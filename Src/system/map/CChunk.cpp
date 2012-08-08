@@ -6,7 +6,7 @@ CChunk::CChunk()
     {
         for(int j = 0; j < CHUNK_Y_DEM; ++i)
         {
-            ChunkArray[i][j] = NULL;
+            ChunkArray[i][j] = 0;
         }
     }
 }

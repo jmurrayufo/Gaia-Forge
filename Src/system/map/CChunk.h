@@ -12,7 +12,7 @@ enum
     //  Dimentions of chunk from top left corner to bottom right
     CHUNK_X_DEM =1024,
     CHUNK_Y_DEM =1024,
-}
+};
 
 class CChunk 
 {
