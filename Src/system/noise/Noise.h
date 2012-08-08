@@ -2,6 +2,7 @@
     #define _NOISE_H_
 
 #include <math.h>
+#include <stdlib.h>
 #include <iostream>
 #include <SDL.h>
 
@@ -41,6 +42,8 @@ public:
     float Perlin2f(int,int);
 
     double FloatNoise(float,float = 1);
+
+    double FloatNoiseStdlib(int,int = 1);
 
     double InterpLin(float,float,float);
 

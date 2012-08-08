@@ -52,17 +52,17 @@ double Noise::Perlin1d(int x)
         {
         case NOISE_INTERP_LINEAR:
             double y0,y1;
-            y0=FloatNoise((int)(x / p));
-            y1=FloatNoise((int)(x / p) + 1);
+            y0=FloatNoiseStdlib((int)(x / p));
+            y1=FloatNoiseStdlib((int)(x / p) + 1);
             //std::cout << "      " << "Y0:" << y0 << " Y1:" << y1 << std::endl;
             total += InterpLin(y0,y1,fmod(x/p,1)) * a;
             break;
         case NOISE_INTERP_CUBIC:
             double n0,n1,n2,n3;
-            n0=FloatNoise((int)x / p - 1);
-            n1=FloatNoise((int)x / p);
-            n2=FloatNoise((int)x / p + 1);
-            n3=FloatNoise((int)x / p + 2);
+            n0=FloatNoiseStdlib((int)x / p - 1);
+            n1=FloatNoiseStdlib((int)x / p);
+            n2=FloatNoiseStdlib((int)x / p + 1);
+            n3=FloatNoiseStdlib((int)x / p + 2);
             total += InterpCubic(n0,n1,n2,n3,fmod(x/p,1)) * a;
             break;
         }
@@ -76,9 +76,16 @@ double Noise::FloatNoise(float x,float y)
 {
     int n = x + y * 57;
     n = (n << 13) ^ n;
-    int t = (n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff;
+    int t = (n * (n * n * 15731 + 789221) + 1376312589 * Seed * Seed) & 0x7fffffff;
     return 1.0 - double(t) * 0.931322574615478515625e-9;/// 1073741824.0); 
-}           
+}          
+
+double Noise::FloatNoiseStdlib(int x,int y)
+{
+    srand(Seed*Seed*98809 + 15731*x*x + 13339*y*y);
+    int n=rand();
+    return (double)n/RAND_MAX;
+}      
 
 double Noise::InterpLin(float a,float b,float x)
 {   
