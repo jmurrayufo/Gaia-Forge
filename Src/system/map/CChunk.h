@@ -7,12 +7,9 @@ This class maintains a large segment of tile space in the game. It will load up,
     and save groups of tiles. 
 */
 #include "CTile.h"
-enum 
-{
-    //  Dimentions of chunk from top left corner to bottom right
-    CHUNK_X_DEM =1024,
-    CHUNK_Y_DEM =1024,
-};
+
+#define CHUNK_X_DEM 1024
+#define CHUNK_Y_DEM 1024
 
 class CChunk 
 {
