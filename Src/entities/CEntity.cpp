@@ -185,10 +185,10 @@ void CEntity::OnRenderGL(){
 
     //I'm going to draw stuff state machine call
     glBegin(GL_QUADS);                                  
-        glTexCoord2d( 0,     0);    glVertex2f(X,Y);
-        glTexCoord2d(.5,     0);    glVertex2f(X+128,Y);
-        glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y+128);
-        glTexCoord2d( 0, 1/8.0);    glVertex2f(X,Y+128);
+        glTexCoord2d( 0, 1/8.0);    glVertex2f(X,    Y);
+        glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y);
+        glTexCoord2d(.5, 0);        glVertex2f(X+128,Y+128);
+        glTexCoord2d( 0, 0);        glVertex2f(X,    Y+128);
     glEnd();
 
     int Ticks = SDL_GetTicks();
