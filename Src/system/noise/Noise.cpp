@@ -52,17 +52,17 @@ double Noise::Perlin1d(int x)
         {
         case NOISE_INTERP_LINEAR:
             double y0,y1;
-            y0=FloatNoiseStdlib((int)(x / p));
-            y1=FloatNoiseStdlib((int)(x / p) + 1);
+            y0=FloatNoise((int)(x / p));
+            y1=FloatNoise((int)(x / p) + 1);
             //std::cout << "      " << "Y0:" << y0 << " Y1:" << y1 << std::endl;
             total += InterpLin(y0,y1,fmod(x/p,1)) * a;
             break;
         case NOISE_INTERP_CUBIC:
             double n0,n1,n2,n3;
-            n0=FloatNoiseStdlib((int)x / p - 1);
-            n1=FloatNoiseStdlib((int)x / p);
-            n2=FloatNoiseStdlib((int)x / p + 1);
-            n3=FloatNoiseStdlib((int)x / p + 2);
+            n0=FloatNoise((int)x / p - 1);
+            n1=FloatNoise((int)x / p);
+            n2=FloatNoise((int)x / p + 1);
+            n3=FloatNoise((int)x / p + 2);
             total += InterpCubic(n0,n1,n2,n3,fmod(x/p,1)) * a;
             break;
         }
