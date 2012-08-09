@@ -184,11 +184,11 @@ void CEntity::OnRenderGL(){
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
     //I'm going to draw stuff state machine call
-    glBegin(GL_QUADS);                                  
-        glTexCoord2d( 0, 1/8.0);    glVertex2f(X,    Y);
-        glTexCoord2d(.5, 1/8.0);    glVertex2f(X+128,Y);
-        glTexCoord2d(.5, 0);        glVertex2f(X+128,Y+128);
-        glTexCoord2d( 0, 0);        glVertex2f(X,    Y+128);
+    glBegin(GL_QUADS);                                   
+        glTexCoord2d( 0,     0     );    glVertex2f( X,     Y );
+        glTexCoord2d( 0,     1/8.f );    glVertex2f( X,     Y+128 );
+        glTexCoord2d( 1/2.f, 1/8.f );    glVertex2f( X+128, Y+128 );
+        glTexCoord2d( 1/2.f, 0     );    glVertex2f( X+128, Y );
     glEnd();
 
     int Ticks = SDL_GetTicks();
