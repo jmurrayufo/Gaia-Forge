@@ -9,4 +9,9 @@
 #define WWIDTH       640
 #define WHEIGHT      480
 
+#ifndef NULL
+#define NULL 0
+#endif
+
+
 #endif
