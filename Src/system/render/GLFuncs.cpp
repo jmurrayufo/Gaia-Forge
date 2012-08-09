@@ -28,7 +28,7 @@ void CaptureScreenShot(const char* file)
     {
         for ( int j = 0; j < WWIDTH; ++j )
         {
-            for (int k = 0; k < 4; ++k)
+            for ( int k = 0; k < 4; ++k )
             {
                 image[(i*WWIDTH+j)*4+k] = buffer[((WHEIGHT-i-1)*WWIDTH+j)*4+k];
             }
@@ -37,5 +37,18 @@ void CaptureScreenShot(const char* file)
     lodepng::encode(file, image, WWIDTH, WHEIGHT);
     free(image);
     free(buffer);
+}
+
+void DrawBox(int x, int y, float w, float h, float* c)
+{
+    glDisable(GL_TEXTURE_2D);
+    glColor4f( c[0], c[1], c[2], c[3] );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    glBegin(GL_QUADS);
+        glVertex2f(     x, y     );
+        glVertex2f( x + w, y     );
+        glVertex2f( x + w, y + h );
+        glVertex2f(     x, y + h );
+    glEnd();
 }
             

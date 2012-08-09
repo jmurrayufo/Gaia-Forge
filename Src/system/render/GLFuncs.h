@@ -16,3 +16,5 @@ void CaptureScreenShot();
 
 void CaptureScreenShot(const char* file);
 
+// Draw a box to the screen 
+void DrawBox(int,int,float,float,float*);
