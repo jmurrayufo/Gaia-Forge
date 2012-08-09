@@ -45,25 +45,66 @@ double Noise::Perlin1d(int x)
     double a=Amplitude;
     for(int i=0;i<Octaves;i++)
     {
-        //std::cout << "   " << "P:" << p << " A:" << a << std::endl;
         if(p==0 || a==0)
             break;
         switch(InterpType)
         {
         case NOISE_INTERP_LINEAR:
             double y0,y1;
+
             y0=FloatNoise((int)(x / p));
             y1=FloatNoise((int)(x / p) + 1);
-            //std::cout << "      " << "Y0:" << y0 << " Y1:" << y1 << std::endl;
+
             total += InterpLin(y0,y1,fmod(x/p,1)) * a;
+
             break;
         case NOISE_INTERP_CUBIC:
             double n0,n1,n2,n3;
+
             n0=FloatNoise((int)x / p - 1);
-            n1=FloatNoise((int)x / p);
+            n1=FloatNoise((int)x / p + 0);
             n2=FloatNoise((int)x / p + 1);
             n3=FloatNoise((int)x / p + 2);
+
             total += InterpCubic(n0,n1,n2,n3,fmod(x/p,1)) * a;
+
+            break;
+        }
+        p = p / 2;
+        a = a / Persistance;
+    }
+    return total;
+}
+
+double Noise::Perlin2d(int x,int y)
+{
+    double total=0;
+    double p=Period;
+    double a=Amplitude;
+    for(int i=0;i<Octaves;i++)
+    {
+        if(p==0 || a==0)
+            break;
+        switch(InterpType)
+        {
+        case NOISE_INTERP_LINEAR:
+            double vx[2];
+            double vy[2];
+            double xy[2];
+
+            vx[0] = FloatNoise( (int)(x / p),     (int)(y / p)     );
+            vx[1] = FloatNoise( (int)(x / p) + 1, (int)(y / p)     );
+
+            vy[0] = FloatNoise( (int)(x / p),     (int)(y / p) + 1 );
+            vy[1] = FloatNoise( (int)(x / p) + 1, (int)(y / p) + 1 );
+
+            xy[0] = InterpLin(vx[0],vx[1],fmod(x/p,1));
+            xy[1] = InterpLin(vy[0],vy[1],fmod(x/p,1));
+
+            total += InterpLin(xy[0],xy[1],fmod(y/p,1)) * a;
+
+            break;
+        case NOISE_INTERP_CUBIC:
             break;
         }
         p = p / 2;

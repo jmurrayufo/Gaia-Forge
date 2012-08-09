@@ -35,11 +35,7 @@ public:
 
     double Perlin1d(int);
 
-    float Perlin1f(int);
-
     double Perlin2d(int,int);
-
-    float Perlin2f(int,int);
 
     double FloatNoise(float,float = 1);
 
