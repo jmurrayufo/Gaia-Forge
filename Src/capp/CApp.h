@@ -21,8 +21,9 @@
 #include "..\system\controls\CCamera.h"
 #include "..\system\controls\CEvent.h"
 #include "..\system\graphics\CAnimation.h"
-#include "..\system\render\GLDebug.h"
 #include "..\system\noise\Noise.h"
+#include "..\system\render\GLDebug.h"
+#include "..\system\render\GLFuncs.h"
 
 //==============================================================================
 class CApp : public CEvent {
