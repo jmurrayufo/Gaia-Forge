@@ -6,7 +6,7 @@
 #include "..\..\system\controls\CCamera.h"
 #include "..\..\entities\CEntity.h"
  
-#include "..\..\entities\CPlayer\CPlayer.h"
+#include "..\..\entities\player\CPlayer.h"
  
 class CAppStateGame : public CAppState {
     private:

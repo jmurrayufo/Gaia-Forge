@@ -1,7 +1,7 @@
 #ifndef _CAPPSTATEINTRO_H_
     #define _CAPPSTATEINTRO_H_
  
-#include "CAppState.h"
+#include "..\CAppState.h"
  
 class CAppStateIntro : public CAppState {
     private:

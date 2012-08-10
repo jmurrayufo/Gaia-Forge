@@ -1,11 +1,10 @@
 #include "CAppStateIntro.h"
  
-#include "..\CAppStateManager.h"
+#include "..\CStateManager.h"
  
 CAppStateIntro CAppStateIntro::Instance;
  
 CAppStateIntro::CAppStateIntro() {
-    Surf_Logo = NULL;
 }
  
 void CAppStateIntro::OnActivate() {
@@ -21,7 +20,7 @@ void CAppStateIntro::OnDeactivate() {
  
 void CAppStateIntro::OnLoop() {
     if(StartTime + 3000 < SDL_GetTicks()) {
-        CAppStateManager::SetActiveAppState(APPSTATE_GAME);
+        CStateManager::SetActiveAppState(APPSTATE_GAME);
     }
 }
  
