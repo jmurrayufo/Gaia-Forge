@@ -1,11 +1,19 @@
 #ifndef _CAPPSTATEINTRO_H_
     #define _CAPPSTATEINTRO_H_
- 
+
+#include <vector>
+#include <gl/gl.h>
+#include <gl/glu.h> 
+#include <iostream>
+
+#include "..\..\lib\lodepng.h"
 #include "..\CAppState.h"
  
 class CAppStateIntro : public CAppState {
     private:
         static CAppStateIntro Instance;
+
+        GLuint texture;
  
         int StartTime;
  
