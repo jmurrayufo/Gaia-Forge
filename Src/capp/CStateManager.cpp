@@ -22,9 +22,9 @@ void CStateManager::SetActiveAppState(int AppStateID) {
     if(ActiveAppState) ActiveAppState->OnDeactivate();
  
     // Also, add your App State Here so that the Manager can switch to it
-    if(AppStateID == APPSTATE_NONE)        ActiveAppState = 0;
+    if(AppStateID == APPSTATE_NONE)     ActiveAppState = 0;
     if(AppStateID == APPSTATE_INTRO)    ActiveAppState = CAppStateIntro::GetInstance();
-    if(AppStateID == APPSTATE_GAME)        ActiveAppState = CAppStateGame::GetInstance();
+    if(AppStateID == APPSTATE_GAME)     ActiveAppState = CAppStateGame::GetInstance();
  
     if(ActiveAppState) ActiveAppState->OnActivate();
 }
