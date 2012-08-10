@@ -2,11 +2,10 @@
     #define _CMAP_H_
 
 #include "CChunk.h"
-
+#include "../noise/Noise.h"
 
 #define MAP_WORLD_WIDTH    8
 #define MAP_WORTH_HEIGHT   2
-
 
 
 /*!
@@ -35,7 +34,7 @@ public:
    //! Pointers to all the CChunks in this map
    CChunk* Chunks[MAP_WORLD_WIDTH][MAP_WORTH_HEIGHT];
 
-   //! Seed that this map is based off of. Add Perlin noise should use the same seed!
+   //! Seed that this map is based off of. All Perlin noise should use the same seed!
    int Seed;
 
 public:
@@ -67,6 +66,12 @@ public:
    */
    // TODO: Make this function
    void OnRenderGL(float x,float y,float w=WWIDTH,float h=WHEIGHT);
+
+   /*!
+      Render the current scene. 
+      The scene is drawn form the currently known location within the CMap class. 
+   */
+   void OnRednerGL();
 
    //! This map file is no longer needed, close down. 
 
@@ -110,7 +115,12 @@ public:
    int SetLocation(float,float,int,int);
 
 private:
-
+   /*!
+      Populate a null chunk with data from the seed and current parameters. 
+      TODO: We need the parameters for worlds to be saved (how do we build different works?)
+      TODO: This function might need to get built into a world gen class...
+   */
+   bool GenerateChunk(int,int,CHunk*);
 };
 
 #endif
