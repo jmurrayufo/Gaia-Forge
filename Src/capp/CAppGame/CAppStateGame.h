@@ -18,6 +18,7 @@ class CAppStateGame : public CAppState {
     private:
         static CAppStateGame Instance;
  
+        float offset; // Used to keep track of the current visual offset for the render demo. DEBUG
         CPlayer    Player;
         CPlayer    Player2;
  

@@ -42,7 +42,9 @@ bool CApp::OnInit() {
 
     glLoadIdentity();
 
-    CStateManager::SetActiveAppState(APPSTATE_GAME); // This will soon be intro
+    SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
+
+    CStateManager::SetActiveAppState(APPSTATE_INTRO); // This will soon be intro
     return true;
 }
 
