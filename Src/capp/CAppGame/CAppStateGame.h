@@ -1,12 +1,18 @@
 #ifndef _CAPPSTATEGAME_H_
     #define _CAPPSTATEGAME_H_
  
+#include <vector>
+#include <gl/gl.h>
+#include <gl/glu.h>
+
 #include "..\CAppState.h"
  
-#include "..\..\system\controls\CCamera.h"
 #include "..\..\entities\CEntity.h"
- 
 #include "..\..\entities\player\CPlayer.h"
+#include "..\..\system\controls\CCamera.h"
+#include "..\..\system\noise\Noise.h"
+#include "..\..\system\render\GLDebug.h"
+#include "..\..\system\render\GLFuncs.h"
  
 class CAppStateGame : public CAppState {
     private:

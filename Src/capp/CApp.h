@@ -21,17 +21,12 @@
 #include "..\system\controls\CCamera.h"
 #include "..\system\controls\CEvent.h"
 #include "..\system\graphics\CAnimation.h"
-#include "..\system\noise\Noise.h"
-#include "..\system\render\GLDebug.h"
-#include "..\system\render\GLFuncs.h"
+#include "CStateManager.h"
 
 //==============================================================================
 class CApp : public CEvent {
    private:
       bool  Running;
-      std::vector<unsigned char> image;
-      unsigned int width,height;
-      GLuint texture;         // This is a handle to our texture object
 
       SDL_Surface*   Surf_Display;
 
@@ -44,10 +39,6 @@ class CApp : public CEvent {
       bool OnInit();
 
       void OnEvent(SDL_Event* Event);
-
-         void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
-
-         void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
 
          void OnExit();
 
