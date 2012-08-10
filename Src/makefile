@@ -24,7 +24,7 @@ RESINC_DEBUG =  $(RESINC)
 RCFLAGS_DEBUG =  $(RCFLAGS)
 LIBDIR_DEBUG =  $(LIBDIR)
 LIB_DEBUG = $(LIB)
-LDFLAGS_DEBUG =  $(LDFLAGS)
+LDFLAGS_DEBUG =  $(LDFLAGS) 
 OBJDIR_DEBUG = obj\\Debug
 DEP_DEBUG = 
 OUT_DEBUG = bin\\Debug\\Gaia-Forge.exe
@@ -35,7 +35,7 @@ RESINC_RELEASE =  $(RESINC)
 RCFLAGS_RELEASE =  $(RCFLAGS)
 LIBDIR_RELEASE =  $(LIBDIR)
 LIB_RELEASE = $(LIB)
-LDFLAGS_RELEASE =  $(LDFLAGS) -s
+LDFLAGS_RELEASE =  $(LDFLAGS) -s -Wl,-subsystem,windows
 OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\Gaia-Forge.exe
@@ -77,7 +77,7 @@ clean: clean_debug clean_release
 debug: before_debug debug_run 
 
 debug_run: $(OBJ_DEBUG) $(DEP_DEBUG)
-	$(warning LINK!)
+	@echo Link time!
 	$(LD) $(LDFLAGS_DEBUG) $(LIBDIR_DEBUG) $(OBJ_DEBUG) $(LIB_DEBUG) -o $(OUT_DEBUG)
 
 before_debug: 
