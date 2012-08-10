@@ -19,6 +19,7 @@ void CAppStateGame::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
  
         case SDLK_SPACE: {
             //Player.Jump();
+            CaptureScreenShot();
             break;
         }
  
@@ -150,18 +151,22 @@ void CAppStateGame::OnRenderGL() {
     g.InterpType = NOISE_INTERP_LINEAR;
 
     x.Amplitude = WHEIGHT/2;  
-    float offset = SDL_GetTicks()/200.f;
+    float offset = SDL_GetTicks()/200;
     float colors[4]={1,0,0,1};
     int boxSize=16;
     for (int i = 0; i < WWIDTH/boxSize; ++i)
     {
         for (int j = 0; j < WHEIGHT/boxSize; ++j)
         {
-            if( x.Perlin1d(i + offset ) + WHEIGHT/2 > j*boxSize )
+            if( x.Perlin1d( i + offset ) + WHEIGHT / 2 > j * boxSize )
                 continue;
-            colors[0]=g.Perlin2d(i*boxSize + offset*boxSize,j*boxSize)+0.5;
+            colors[0]=g.Perlin2d( (i + offset) * boxSize, j * boxSize ) + 0.5;
+            if(colors[0] > 0.5)
+                colors[0]=1;
+            else
+                colors[0]=0;
             colors[2]=colors[1]=colors[0];
-            DrawBox(i*boxSize,j*boxSize,boxSize,boxSize,colors);
+            DrawBox( i * boxSize, j * boxSize, boxSize, boxSize, colors);
         }
     }
 
