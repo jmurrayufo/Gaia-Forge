@@ -41,7 +41,7 @@ void CaptureScreenShot(const char* file)
 
 void DrawBox(int x, int y, float w, float h, float* c)
 {
-    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_TEXTURE_2D);    
     glColor4f( c[0], c[1], c[2], c[3] );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     glBegin(GL_QUADS);
