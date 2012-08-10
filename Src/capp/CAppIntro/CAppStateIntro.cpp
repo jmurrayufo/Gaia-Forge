@@ -36,7 +36,7 @@ void CAppStateIntro::OnActivate() {
 }
  
 void CAppStateIntro::OnDeactivate() {
-    // Cleanup for a new state!
+    glDeleteTextures(1,&texture);
 }
  
 void CAppStateIntro::OnLoop() {

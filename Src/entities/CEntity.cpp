@@ -197,11 +197,7 @@ void CEntity::OnRenderGL(){
 }
 
 void CEntity::OnCleanup() {
-    if(Surf_Entity) {
-        SDL_FreeSurface(Surf_Entity);
-    }
-
-    Surf_Entity = NULL;
+    glDeleteTextures(1,&texture);
 }
 
 void CEntity::OnAnimate() {
