@@ -1,7 +1,13 @@
 #ifndef _CTILE_H_
 #define _CTILE_H_
 
+#include <iostream>
 #include "..\..\Define.h"
+
+//Tiles are defined as Square
+
+//Size in pixels of a tile
+#define TILE_SIZE 16
 
 enum {
     TILE_TYPE_NONE = 0,

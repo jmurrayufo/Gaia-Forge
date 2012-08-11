@@ -21,5 +21,8 @@ bool CTile::Collision()
 
 void CTile::OnRenderGL(float x, float y)
 {
-    
+    std::cout << "print tile to screen at x y coords";
+
+    //TODO:  write function to draw tile to screen here
+    return;
 }

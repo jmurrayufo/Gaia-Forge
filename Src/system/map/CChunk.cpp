@@ -2,44 +2,53 @@
 
 CChunk::CChunk()
 {   
-    return;
-    for(int i = 0; i < CHUNK_X_DEM; ++i)
-    {
-        for(int j = 0; j < CHUNK_Y_DEM; ++i)
-        {
-            //ChunkArray[i][j] = (CTile*)0;
-        }
-    }   
-}
+    //reserves memory for CTile pointer elements
+    ChunkVect.reserve(CHUNK_X_DEM * CHUNK_Y_DEM);
+    ChunkWallVect.reserve(CHUNK_X_DEM * CHUNK_Y_DEM);
 
+    //Creates null Pointer CTile elements
+    for (int i = 0 ; i<(CHUNK_X_DEM * CHUNK_Y_DEM) ; ++i)
+    {
+        ChunkVect.push_back(NULL);
+        ChunkWallVect.push_back(NULL);
+    }
+}
 
 CChunk::~CChunk() 
 {
-    for(int i = 0; i < CHUNK_X_DEM; ++i)
-    {
-        for(int j = 0; j < CHUNK_Y_DEM; ++j)
-        {
-            //delete ChunkArray[i][j];
-        }
-    }
+    OnCleanup();
 }
 
 void CChunk::OnCleanup()
 {
+    for (int i = 0 ; i<(CHUNK_X_DEM * CHUNK_Y_DEM) ; ++i)
+    {
+        delete ChunkVect[i];
+        delete ChunkWallVect[i];
+    }
+    ChunkVect.clear();
+    ChunkWallVect.clear();
+
     // Make this clean up stuff!
 }
+void CChunk::ChangeWallTile(int x, int y, int id)
+{   
+      
+    ChunkWallVect[x + (y * CHUNK_X_DEM)]= new CTile(id);
+
+}
+void CChunk::ChangeTile(int x, int y, int id, bool collision)
+{
+    ChunkWallVect[x + (y * CHUNK_X_DEM)]= new CTile(id, collision);
+}
+
 void CChunk::OnRenderGL(float x, float y, int x_c, int y_c)
 {
-
+    if((x_c>CHUNK_X_DEM)||(y_c>CHUNK_Y_DEM))
+    {
+        std::cerr << "Chunk::OnRenderGL chunk coordinates out of bounds! x_c="<< x_c << " y_c=" << y_c << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
+        assert(0);
+    }
 }
 
-bool CChunk::IsInRect( float x1, float x2, float y1, float y2 )
-{
-    if(             X > x2 && 
-        X+CHUNK_X_DEM < x1 && 
-                    Y > y2 &&
-        Y+CHUNK_Y_DEM < y1)
-        return false;
-    else
-        return true;
-}
+
