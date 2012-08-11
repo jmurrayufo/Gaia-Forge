@@ -2,13 +2,16 @@
     #define _CMAP_H_
 
 #include <vector>
+#include <assert.h>
+
+
 
 #include "CChunk.h"
 #include "../noise/Noise.h"
 
 // This 
 #define MAP_WORLD_WIDTH    8
-#define MAP_WORTH_HEIGHT   2
+#define MAP_WORLD_HEIGHT   2
 
 
 /*!
@@ -45,22 +48,22 @@ public:
    ~CMap();
 
    //! Called to load a map file.
-   // TODO: Make this function
+   // TODO: Finish coding this function
    void OnLoad(const char* File);
 
    //! Save the map file to a given location.
 
-   // TODO: Make this function
+   // TODO: Finish coding this function
    void OnSave(const char* File);
 
    //! Save the map file to it's default location
 
-   // TODO: Make this function
+   // TODO: Finish coding this function
    void OnSave();
 
    //! Called every frame. This should take care of dynamic load/free of chunks.
 
-   // TODO: Make this function
+   // TODO: Finish coding this function
    void OnLoop();
 
    /*! 
