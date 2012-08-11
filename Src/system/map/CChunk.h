@@ -12,8 +12,8 @@ This class maintains a large segment of tile space in the game. It will load up,
 
 #include "CTile.h"
 
-#define CHUNK_X_DEM 128
-#define CHUNK_Y_DEM 128
+#define CHUNK_X_DEM 5
+#define CHUNK_Y_DEM 5
 
 class CChunk 
 {
@@ -41,7 +41,7 @@ public:
     /*!
         Render the current chunk with the given frame
     */
-    void OnRenderGL(float x, float y, int w, int h);
+    void OnRenderGL(float x, float y, int x_c, int y_c);
 
     /*!
         Take a 4 element float vector and return true if it touches this CChunk

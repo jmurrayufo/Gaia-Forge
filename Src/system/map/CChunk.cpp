@@ -28,46 +28,9 @@ void CChunk::OnCleanup()
 {
     // Make this clean up stuff!
 }
-void CChunk::OnRenderGL(float x, float y, int w, int h)
+void CChunk::OnRenderGL(float x, float y, int x_c, int y_c)
 {
-    // TODO: Calculate actual screen location of tile
-    /*  The location of the tile is currently in location steps across the screen. This 
-        needs to be translated over to the pixel by pixel location of a given tile on the
-        screen. 
-    */
-    std::cerr << "Entered Function" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
-    std::cerr.flush();
 
-    for (int i = 0; i < w; ++i)
-    {
-        float x_world = i + x - w/2;
-        float x_chunk = fmod(x_world,w);
-        std::cerr << "Loop(i):" << i << std::endl << "   >" << __FILE__ << __LINE__ << std::endl;
-        std::cerr << "x_w:" << x_world << std::endl;
-        std::cerr << "x_w(int):" << floor(x_world) << std::endl;
-        std::cerr << "x_c:" << x_chunk << std::endl;
-
-        if( (x_world < X * CHUNK_X_DEM) || (x_world > X * CHUNK_X_DEM + CHUNK_X_DEM) )
-        {
-            std::cerr << "SKIPED!" << std::endl;
-            continue;
-        }
-
-        for (int j = 0; j < h; ++j)
-        {
-            float y_world = j + y - CHUNK_Y_DEM/2;
-            float y_chunk = fmod(y_world,CHUNK_Y_DEM);
-            std::cerr << "  Loop(j):" << j << std::endl << "     >" << __FILE__ << __LINE__ << std::endl;
-
-            if( (x_world < Y * CHUNK_Y_DEM) || (y_world > Y * CHUNK_Y_DEM + CHUNK_Y_DEM) )
-            {
-                std::cerr << "SKIPED!" << std::endl;
-                continue;
-            }
-
-            std::cout << "IN CHUNK!" << std::endl;            
-        }
-    }
 }
 
 bool CChunk::IsInRect( float x1, float x2, float y1, float y2 )
