@@ -24,3 +24,8 @@ CChunk::~CChunk()
     }
     
 }
+
+void CChunk::OnCleanup()
+{
+    // Make this clean up stuff!
+}

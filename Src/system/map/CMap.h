@@ -1,9 +1,12 @@
 #ifndef _CMAP_H_
     #define _CMAP_H_
 
+#include <vector>
+
 #include "CChunk.h"
 #include "../noise/Noise.h"
 
+// This 
 #define MAP_WORLD_WIDTH    8
 #define MAP_WORTH_HEIGHT   2
 
@@ -32,7 +35,7 @@ public:
    float Y;
 
    //! Pointers to all the CChunks in this map
-   CChunk* Chunks[MAP_WORLD_WIDTH][MAP_WORTH_HEIGHT];
+   std::vector<CChunk*> Chunks;
 
    //! Seed that this map is based off of. All Perlin noise should use the same seed!
    int Seed;
@@ -120,7 +123,7 @@ private:
       TODO: We need the parameters for worlds to be saved (how do we build different works?)
       TODO: This function might need to get built into a world gen class...
    */
-   bool GenerateChunk(int,int,CHunk*);
+   bool GenerateChunk(int,int,CChunk*);
 };
 
 #endif

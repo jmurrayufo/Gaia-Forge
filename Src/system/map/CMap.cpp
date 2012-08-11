@@ -4,39 +4,18 @@ CMap::CMap()
 {
     X=0;
     Y=0;
-    for (int i = 0; i < MAP_WORLD_WIDTH; ++i)
-    {
-        for (int j = 0; j < MAP_WORTH_HEIGHT; ++j)
-        {
-            Chunks[i][j]=NULL;
-        }
-    }
+    Chunks.reserve( MAP_WORLD_WIDTH * MAP_WORTH_HEIGHT );
 }
 
 CMap::~CMap() 
 {
-    for (int i = 0; i < MAP_WORLD_WIDTH; ++i)
-    {
-        for (int j = 0; j < MAP_WORTH_HEIGHT; ++j)
-        {
-            delete Chunks[i][j];
-        }
-    }
+    for( std::vector<CChunk*>::iterator i = Chunks.begin() ; i!=Chunks.end() ; ++i )
+        (*i)->OnCleanup();
 }
 
 void CMap::OnLoop()
 {
-    // Check to make sure we have all our chunks loaded
-    for (int i = 0; i < MAP_WORLD_WIDTH; ++i)
-    {
-        for (int j = 0; j < MAP_WORTH_HEIGHT; ++j)
-        {
-            if (Chunks[i][j]==NULL)
-            {
-                // Generate the chunk
-            }
-        }
-    }
+
 }
 
 bool CMap::GenerateChunk( int x, int y, CChunk* gaia )
@@ -49,14 +28,13 @@ bool CMap::GenerateChunk( int x, int y, CChunk* gaia )
     Noise ground;
     Noise dirt;
     Noise rock;
-    x.Seed=Seed; // Good place for a this-> pointer?
 
     if (gaia!=NULL)
         return false;
 
     gaia = new CChunk;
 
-    for (int i = 0; i < CHUNK_x_DEM; ++i)
+    for (int i = 0; i < CHUNK_X_DEM; ++i)
     {
         for (int j = 0; j < CHUNK_Y_DEM; ++j)
         {

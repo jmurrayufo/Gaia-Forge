@@ -39,6 +39,8 @@ public:
 
     void OnLoad(const char* File);
 
+    void OnCleanup();
+
 };
 
 #endif //_CCHUNK_H_
