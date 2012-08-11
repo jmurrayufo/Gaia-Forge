@@ -43,45 +43,74 @@ void CMap::OnLoop()
 
 void CMap::OnRenderGL(float x,float y,float w,float h)
 {
-    CChunk *currentChunk=NULL;
-    // Locate the first chunk we want to use
-    int currentChunkX = floor(x-w/2)/CHUNK_X_DEM;
-    int currentChunkY = floor(y-h/2)/CHUNK_Y_DEM;
-    currentChunk = Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH);
+    CChunk *currentChunk=(CChunk*)-1;
+    int currentChunkX;
+    int currentChunkY;
+    // std::cout.flush();
 
-    for (int j = 0; j < h; ++j)
+    for (int j = 0; j < h; j+=16) // Tile Size
     {
-        float y_world = j + y - h/2;
-        float y_screen = (int)y_world - y_world + j;
+        float y_world = j/16 + y - h/(2*16); // j and h must be converted to World Tile Coords
+        float y_screen = (floor(y_world) - y_world) + j;
         float y_chunk = floor(y_world);
-        std::cerr << "Loop(j):" << j << std::endl << "  >" << __FILE__ << __LINE__ << std::endl;
-        std::cerr << " y_w:" << y_world << std::endl;
-        std::cerr << " y_w(int):" << floor(y_world) << std::endl;
-        std::cerr << " y_screen:" << y_screen << std::endl;
-        std::cerr << " y_c:" << y_chunk << std::endl;
+        currentChunkY = floor(y_world/CHUNK_Y_DEM);
 
-        for (int i = 0; i < w; ++i)
+        // std::cerr << "Loop(j):" << j/16 << std::endl;
+        // std::cerr << " y_w:" << y_world << std::endl;
+        // std::cerr << " y_w(int):" << floor(y_world) << std::endl;
+        // std::cerr << " y_screen:" << y_screen << std::endl;
+        // std::cerr << " y_c:" << y_chunk << std::endl;
+        // std::cerr << " curY:" << currentChunkY << std::endl;
+        // std::cerr.flush();
+        if(currentChunkY<0)
         {
-            float x_world = i + x - w/2;
-            float x_screen = (int)x_world - x_world + i;
+            // std::cerr << " continue;" << std::endl;
+            continue; 
+        }
+        if(currentChunkY>=MAP_WORLD_HEIGHT)
+        {
+            // std::cerr << " break;" << std::endl;
+            break;
+        }
+
+        for (int i = 0; i < w; i+=16)
+        {
+            float x_world = i/16 + x - w/(2*16); // j and h must be converted to World Tile Coords
+            float x_screen = (floor(x_world) - x_world) + i;
             float x_chunk = floor(x_world);
-            std::cerr << "  Loop(i):" << i << std::endl << "    >" << __FILE__ << __LINE__ << std::endl;
-            std::cerr << "   x_w:" << x_world << std::endl;
-            std::cerr << "   x_w(int):" << floor(x_world) << std::endl;
-            std::cerr << "   x_screen:" << x_screen << std::endl;
-            std::cerr << "   x_c:" << x_chunk << std::endl;
+            currentChunkX = floor(x_world/CHUNK_X_DEM);
+
+            // std::cerr << "  Loop(i):" << i/16 << std::endl;
+            //std::cerr << "   x_w:" << x_world << std::endl;
+            //std::cerr << "   x_w(int):" << floor(x_world) << std::endl;
+            //std::cerr << "   x_screen:" << x_screen << std::endl;
+            //std::cerr << "   x_c:" << x_chunk << std::endl;
 
             // Recalculate the current chunk in the X axis
-            currentChunkX = floor(x_world)/CHUNK_X_DEM;
-            currentChunkY = floor(y_world)/CHUNK_Y_DEM;
-            std::cerr << "   At:" << currentChunkX << "," << currentChunkY << std::endl;
+            // std::cerr << "   At:" << currentChunkX << "," << currentChunkY << std::endl;
+
+            if(currentChunkX<0)
+            {
+                // std::cerr << "   continue;" << std::endl;
+                continue; 
+            }
+            if(currentChunkX>=MAP_WORLD_WIDTH)
+            {
+                // std::cerr << "    break;" << std::endl;
+                break;
+            }
+
             if(currentChunk != Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH))
             {
-                std::cerr << "   New Chunk!" << std::endl;
-                std::cerr << "   Now at:" << currentChunkX << "," << currentChunkY << std::endl;
+                // std::cerr << "    New Chunk!" << std::endl;
+                // std::cerr << "    Now at:" << currentChunkX << "," << currentChunkY << std::endl;
                 currentChunk = Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH);
             }
 
+            // currentChunk now points to the chunk we want to render on. 
+            // y_world: This is the world location of the current tile
+            // y_screen: This is the screen (pixel based) location of the tile!
+            // y_chunk: 
 
         }
     }
