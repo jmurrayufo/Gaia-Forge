@@ -17,3 +17,9 @@ bool CTile::Collision()
 {
     return collideable;
 }
+
+
+void CTile::OnRenderGL(float x, float y)
+{
+    
+}

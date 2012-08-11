@@ -19,6 +19,11 @@ public:
     CTile();
     CTile(short TileID, bool Collideable = 1);
     bool Collision();
+
+    /*
+        Render the tile to the given location on the screen. 
+    */
+    void OnRenderGL(float x, float y);
 protected:
 
     bool collideable;
