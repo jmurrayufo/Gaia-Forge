@@ -1,13 +1,17 @@
 #include "CMap.h"
 
-CMap::CMap() 
+CMap::CMap()
 {
     X=0;
     Y=0;
     Chunks.reserve( MAP_WORLD_WIDTH * MAP_WORLD_HEIGHT );
+    for (int i = 0; i < MAP_WORLD_WIDTH * MAP_WORLD_HEIGHT; ++i)
+    {
+        Chunks.push_back((CChunk*)i);
+    }
 }
 
-CMap::~CMap() 
+CMap::~CMap()
 {
     for( std::vector<CChunk*>::iterator i = Chunks.begin() ; i!=Chunks.end() ; ++i )
         (*i)->OnCleanup();
@@ -39,32 +43,49 @@ void CMap::OnLoop()
 
 void CMap::OnRenderGL(float x,float y,float w,float h)
 {
-    // The screen is CENTERED on x,y right now. We need to draw around this point
-    // First, we figure out what chunks we are hitting
-    float x_min;
-    float x_max;
-    float y_min;
-    float y_max;
+    CChunk *currentChunk=NULL;
+    // Locate the first chunk we want to use
+    int currentChunkX = floor(x-w/2)/CHUNK_X_DEM;
+    int currentChunkY = floor(y-h/2)/CHUNK_Y_DEM;
+    currentChunk = Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH);
 
-    x_min = x - w/2; // Left most Coord to render
-    x_max = x + w/2; // Right most Coord to render
-    x_min = y - h/2; // Top most Coord to render
-    x_max = y + h/2; // Bottom most Coord to render
-    
-    // Loop through CCHunks and add ones that we care about to the RenderList
-    for (int i = 0; i < MAP_WORLD_WIDTH; ++i)
+    for (int j = 0; j < h; ++j)
     {
-        // Loop though the y dimension
-        for (int j = 0; j < MAP_WORLD_HEIGHT; ++j)
+        float y_world = j + y - h/2;
+        float y_screen = (int)y_world - y_world + j;
+        float y_chunk = floor(y_world);
+        std::cerr << "Loop(j):" << j << std::endl << "  >" << __FILE__ << __LINE__ << std::endl;
+        std::cerr << " y_w:" << y_world << std::endl;
+        std::cerr << " y_w(int):" << floor(y_world) << std::endl;
+        std::cerr << " y_screen:" << y_screen << std::endl;
+        std::cerr << " y_c:" << y_chunk << std::endl;
+
+        for (int i = 0; i < w; ++i)
         {
-            // Determine if chunk hits the range
-            CChunk* tmp = Chunks.at(i + j*CHUNK_X_DEM);
-            if(tmp->IsInRect(x_min,x_max,y_min,y_max))
+            float x_world = i + x - w/2;
+            float x_screen = (int)x_world - x_world + i;
+            float x_chunk = floor(x_world);
+            std::cerr << "  Loop(i):" << i << std::endl << "    >" << __FILE__ << __LINE__ << std::endl;
+            std::cerr << "   x_w:" << x_world << std::endl;
+            std::cerr << "   x_w(int):" << floor(x_world) << std::endl;
+            std::cerr << "   x_screen:" << x_screen << std::endl;
+            std::cerr << "   x_c:" << x_chunk << std::endl;
+
+            // Recalculate the current chunk in the X axis
+            currentChunkX = floor(x_world)/CHUNK_X_DEM;
+            currentChunkY = floor(y_world)/CHUNK_Y_DEM;
+            std::cerr << "   At:" << currentChunkX << "," << currentChunkY << std::endl;
+            if(currentChunk != Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH))
             {
-                tmp->OnRenderGL(x,y,w,h);
-            } // (if(IsInRect))
-        } // For(j)
-    } // For(i)
+                std::cerr << "   New Chunk!" << std::endl;
+                std::cerr << "   Now at:" << currentChunkX << "," << currentChunkY << std::endl;
+                currentChunk = Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH);
+            }
+
+
+        }
+    }
+        
 }
 
 void CMap::OnRednerGL()
