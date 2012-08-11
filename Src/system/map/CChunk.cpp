@@ -30,10 +30,10 @@ void CChunk::OnCleanup()
 }
 void CChunk::OnRenderGL(float x, float y, int w, int h)
 {
-    /*
-        Note the complex for loop here. We want to loop through the area starting at the 
-        edge of the screen and going to the right. We stop if we hit the edge of the 
-        screen OR the edge of the chunk. 
+    // TODO: Calculate actual screen location of tile
+    /*  The location of the tile is currently in location steps across the screen. This 
+        needs to be translated over to the pixel by pixel location of a given tile on the
+        screen. 
     */
     std::cerr << "Entered Function" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
     std::cerr.flush();
