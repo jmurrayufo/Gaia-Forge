@@ -12,8 +12,8 @@ This class maintains a large segment of tile space in the game. It will load up,
 
 #include "CTile.h"
 
-#define CHUNK_X_DEM 1024
-#define CHUNK_Y_DEM 1024
+#define CHUNK_X_DEM 128
+#define CHUNK_Y_DEM 128
 
 class CChunk 
 {
@@ -26,9 +26,9 @@ public:
     unsigned int X;
     //! Y location of chunk in meters
     unsigned int Y;
-    //CTile* ChunkArray[16][16];
-    //CTile* ChunkWallArray[16][16];
-    
+    CTile* ChunkArray[CHUNK_X_DEM][CHUNK_Y_DEM];
+    CTile* ChunkWallArray[CHUNK_X_DEM][CHUNK_Y_DEM];
+
     CChunk();
     ~CChunk();
 

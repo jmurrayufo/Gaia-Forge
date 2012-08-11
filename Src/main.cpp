@@ -9,10 +9,24 @@
 
 using namespace std;
 
+// 1000 Crash
+// 500 Pass
+// 750 Crash
+// 625 Pass
+// 688 Pass
+// 719 Pass
+// 735 Crash
+// 727 Crash
+// 723 Crash
+// 721 Pass
+// 722 Crash
+#define DIM 722
+
 //Johns Test comment
 //==============================================================================
 int main(int argc, char* argv[]) {
     CChunk x;
+    int y[DIM][DIM];
 
     x.X=0;
     x.Y=0;
