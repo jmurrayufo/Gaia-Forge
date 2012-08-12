@@ -46,27 +46,44 @@ void CAppStateIntro::OnLoop() {
 }
  
 void CAppStateIntro::OnRenderGL() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // Render the intro screen!
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    
+    // Disable writing to any of the color fields
+    glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+    
+    glStencilOp(GL_INCR, GL_INCR, GL_INCR);
+
+    glEnable(GL_STENCIL_TEST);
+    // Draw our blocking poly
+    glBegin(GL_POLYGON);                                   
+        glVertex2f( 50,     50 );
+        glVertex2f( 50,     50+128 );
+        glVertex2f( 50+128, 50+128 );
+    glEnd();
+
+    glStencilFunc(GL_EQUAL, 1, 1);
+
+    glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP); 
+
+    // Re enable drawing of colors
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+
+    // Enable use of textures
     glEnable(GL_TEXTURE_2D);
+
+    // Bind desired texture for drawing
     glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
-    //Enables alpha textures in image files
-    glEnable(GL_BLEND);
-
-    glColor4f(1,1,1,1);
-
-    //effects blending of colors around alpha channel
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
-
-    //I'm going to draw stuff state machine call
+    // Draw the box with colors
     glBegin(GL_QUADS);                                   
         glTexCoord2d( 0, 0 );    glVertex2f( 50,     50 );
         glTexCoord2d( 0, 1 );    glVertex2f( 50,     50+128 );
         glTexCoord2d( 1, 1 );    glVertex2f( 50+128, 50+128 );
         glTexCoord2d( 1, 0 );    glVertex2f( 50+128, 50 );
     glEnd();
-    x.OnRenderGL(0,0);
+    glDisable(GL_STENCIL_TEST);
+
+    // Swap buffers and display!
     SDL_GL_SwapBuffers();
 }
  

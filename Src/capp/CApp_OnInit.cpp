@@ -8,17 +8,19 @@ bool CApp::OnInit() {
         return false;
     }
 
+    // Request use of the stencil buffer
+    SDL_GL_SetAttribute( SDL_GL_STENCIL_SIZE, 1 );
+
     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32,  SDL_GL_DOUBLEBUFFER | SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
         fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
         return false;
     }
 
-
     // Init GLDebug system
     GLDebug::Init();
 
     // Init GL system
-    glClearColor(0, 0, 0, 1);
+    glClearColor(0, 0, 0, 0);
 
     glClearDepth(1.0f);
 
@@ -32,13 +34,14 @@ bool CApp::OnInit() {
 
     glMatrixMode(GL_MODELVIEW);
 
+    // FIXME: One of the lower two lines throws a GL_INVALID_ENUM...
     //glHint(GL_POINT_SMOOTH, GL_NICEST);
-    glHint(GL_LINE_SMOOTH, GL_NICEST);
-    glHint(GL_POLYGON_SMOOTH, GL_NICEST);
+    //glHint(GL_LINE_SMOOTH, GL_NICEST);
+    //glHint(GL_POLYGON_SMOOTH, GL_NICEST);
 
     //glEnable(GL_POINT_SMOOTH);
-    glEnable(GL_LINE_SMOOTH);
-    glEnable(GL_POLYGON_SMOOTH);
+    //glEnable(GL_LINE_SMOOTH);
+    //glEnable(GL_POLYGON_SMOOTH);
 
     glLoadIdentity();
 
