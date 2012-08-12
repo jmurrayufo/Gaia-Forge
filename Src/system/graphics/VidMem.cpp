@@ -112,11 +112,23 @@ int VidMem::CheckTexture(const char* File)
     {
         // Compare the strings. They function as the id for the object and should be unique. 
         if(tmpFile == (*i)->textureFile)
-            return true;
+            return (*i)->count;
     }
     // We iterated through the entire vector and did not find anything, return false.
     return false;
 }
+
+int VidMem::CheckTexture(GLuint searchGluint)
+{
+    for (std::vector<VidMem*>::iterator i = textureList.begin(); i != textureList.end(); ++i)
+    {
+        // Compare the strings. They function as the id for the object and should be unique. 
+        if(searchGluint == (*i)->texture)
+            return (*i)->count;
+    }
+    return 0;
+}
+
 
 VidMem* VidMem::FindTexture(const char* File)
 {
@@ -156,30 +168,36 @@ std::vector<VidMem*>::iterator* VidMem::GetTextureIterator(const char* File)
 
 unsigned int VidMem::GetX(void)
 {
-    return 0;
+    return X;
 }
 
 unsigned int VidMem::GetY(void)
 {
-    return 0; 
+    return Y; 
 }
 
 int VidMem::GetXY(int& x,int& y)
 {
-    return 0;
+    x=X;
+    y=Y;
+    return true;
 }
 
 bool VidMem::SetX(int x)
 {
-    return false;
+    X=x;
+    return true;
 }
 
 bool VidMem::SetY(int y)
 {
-    return false;
+    Y=y;
+    return true;
 }
 
 bool VidMem::SetXY(int x,int y)
 {
-    return false;
+    X=x;
+    Y=y;
+    return true;
 }

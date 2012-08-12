@@ -12,13 +12,14 @@
 
 /*! \brief Maintain list of loaded textures in video memory
 
-\todo TODO: Document this!
+    This class handles having a large number of objects and entities that all share
+    the same texture. 
+
+
 */
 
 class VidMem
 {
-// TODO: This public identifier might be a bad idea, as it will allow us to  modify things
-//  that we aught not to modify.....
 public: 
     //! Static vector that SHOULD contain all members of this class
     static std::vector<VidMem*> textureList;
@@ -73,8 +74,17 @@ public:
         \return Number of instances of this texture in existence. Reports 0 if none exist, 
             and returns negatives on error. 
     */
-    // TODO: Should we have a GLuint version of this? 
     int CheckTexture(const char* File);
+
+    /*!
+        \brief Check if a given texture file has been loaded. 
+    
+        \param[in] searchGluint GLuint number to search for in the static vector
+
+        \return Number of instances of this texture in existence. Reports 0 if none exist, 
+            and returns negatives on error. 
+    */
+    int CheckTexture(GLuint searchGluint);
 
     /*!
         \brief Find a given texture
@@ -103,7 +113,6 @@ public:
 
         \return The current X value. 
     */
-    // TODO: Write this function into VidMem.cpp
     unsigned int GetX(void);
 
     /*!
@@ -111,7 +120,6 @@ public:
 
         \return The current y value. 
     */
-    // TODO: Write this function into VidMem.cpp
     unsigned int GetY(void);
 
     /*!
@@ -120,7 +128,6 @@ public:
         \param[out] x Store the current x value into the argument (it acts like a pointer)
         \param[out] y Store the current y value into the argument (it acts like a pointer)
     */
-    // TODO: Write this function into VidMem.cpp
     int GetXY(int& x,int& y);
 
     /*!
@@ -130,7 +137,6 @@ public:
 
         \return True if value was set, False on error.
     */
-    // TODO: Write this function into VidMem.cpp
     bool SetX(int x);
 
     /*!
@@ -140,7 +146,6 @@ public:
 
         \return True if value was set, False on error.
     */
-    // TODO: Write this function into VidMem.cpp
     bool SetY(int y);
 
     /*!
@@ -151,7 +156,6 @@ public:
 
         \return True if value was set, False on error.
     */
-    // TODO: Write this function into VidMem.cpp
     bool SetXY(int x,int y);
 
 
