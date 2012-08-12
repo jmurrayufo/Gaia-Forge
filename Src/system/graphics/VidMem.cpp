@@ -7,8 +7,8 @@ VidMem::VidMem()
 {
     textureFile="";
     texture=0;
-    x=0;
-    y=0;
+    X=0;
+    Y=0;
     count=0;
     //Void
 }
@@ -18,43 +18,67 @@ VidMem::~VidMem()
     //Void
 }
 
-VidMem* VidMem::InitTexture(const char* File)
+bool VidMem::InitTexture(VidMem*& x, const char* file)
 {
     // To VidMem pointers. On to hold the pointer we look for, the other is a mule.
-    VidMem *tmpTexture,*tmpTextureLocation;
-
+    VidMem *tmpTextureLocation;
     // Attempt to find the texture with FindTexture()
-    if((tmpTextureLocation=FindTexture(File))==NULL)
+    if(x!=NULL)
     {
-
+        delete x;
+        x=NULL;
+    }
+    if((tmpTextureLocation=tmpTextureLocation->FindTexture(file))==NULL)
+    {
         //We did NOT find the texture, create a new one!
-        tmpTexture=new VidMem;
+        x=new VidMem;
 
         // Initialize it
-        tmpTexture->count++;
-        tmpTexture->textureFile=std::string(File);
+        x->count++;
+        x->textureFile=std::string(file);
+
+        // Load that texture
+        std::vector<unsigned char> image;
+
+        unsigned error = lodepng::decode(image,x->X,x->Y,file);
+
+        if(error)
+        {
+            std::cerr << "VidMem::InitTexture Error" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
+            std::cerr.flush();
+            return NULL;
+        }
+        glGenTextures( 1, &(x->texture) );
+        glBindTexture(GL_TEXTURE_2D,x->texture);
+
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, x->X, x->Y, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //GL_NEAREST = no smoothing
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        image.clear();
 
         //Push the texture onto the back of the vector and return a pointer to it. 
-        VidMem::textureList.push_back(tmpTexture);
-        return VidMem::textureList.back(); 
+        VidMem::textureList.push_back(x);
+
+        return true; 
     }
     else
     {
         //We did find the texture, add one to its counter and return it. 
         tmpTextureLocation->count++;
-        return tmpTextureLocation;
+        return true;
     }
-    //This should never be reached, and keeps the compiler happy. 
-    return (VidMem*)NULL;
+
+    return false;
 }
 
 bool VidMem::DeleteTexture(void)
 {
     // Pointer to use with the GetTextureIterator. This function mallocs memory that we MUST free. 
     std::vector<VidMem*>::iterator *loc;
-    std::cerr << "Test" << std::endl;
 
-    // Decrement the counter, as one last thing now points to it. 
+    // Decrement the counter, as one less thing now points to it. 
     this->count--;
 
     // Determine if we were the lass texture to be deleted. 
@@ -62,7 +86,10 @@ bool VidMem::DeleteTexture(void)
     {
         loc=GetTextureIterator(textureFile.c_str());
         if(loc==NULL)
-            std::cout << __FILE__ << __LINE__ << std::endl << "    GetTextureIterator returned a NULL! This is VERY bad..." << std::endl;
+        {
+            std::cerr << "GetTextureIterator returned a NULL! This is VERY bad..." << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
+            std::cerr.flush();
+        }
 
         textureList.erase(*loc);
         delete loc;

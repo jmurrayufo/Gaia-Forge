@@ -6,6 +6,9 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <string>
+#include <SDL.h>
+
+#include "../../lib/lodepng.h"
 
 /*! \brief Maintain list of loaded textures in video memory
 
@@ -27,10 +30,10 @@ public:
     GLuint texture;
 
     //! Width of the texture (pixels)
-    unsigned int x;
+    unsigned int X;
 
     //! Height of the texture (pixels)
-    unsigned int y;
+    unsigned int Y;
 
     //! Number of copies of this object in existence. 
     signed int count;
@@ -50,7 +53,7 @@ public:
             avoid stepping on another objects texture! 
 
     */
-    VidMem* InitTexture(const char* File);
+    static bool InitTexture(VidMem*& x, const char* file);
 
     /*! 
         \brief Mark a given texture as unneeded. 
