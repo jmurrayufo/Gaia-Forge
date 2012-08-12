@@ -8,7 +8,7 @@ bool CApp::OnInit() {
         return false;
     }
 
-    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
+    if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32,  SDL_GL_DOUBLEBUFFER | SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
         fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
         return false;
     }
@@ -44,7 +44,7 @@ bool CApp::OnInit() {
 
     SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
 
-    CAppStateManager::SetActiveAppState(APPSTATE_INTRO); // This will soon be intro
+    CAppStateManager::SetActiveAppState(APPSTATE_INTRO);
     return true;
 }
 
