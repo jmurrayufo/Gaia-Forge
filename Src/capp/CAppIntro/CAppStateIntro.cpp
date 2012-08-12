@@ -8,8 +8,7 @@ CAppStateIntro::CAppStateIntro() {
 }
  
 void CAppStateIntro::OnActivate() {
-    // Load Simple Logo
-    // TODO: Get the logo working!    // Holder for the image file, will be deleted once we are loaded!
+    
 
     x.OnInit();
 
