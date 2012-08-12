@@ -21,11 +21,7 @@ CMap::CMap()
 
 CMap::~CMap()
 {
-    std::cerr << "Called CMap::~CMap()" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
-    std::cerr.flush();
     OnCleanup();
-    std::cerr << "Finished CMap::~CMap()" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
-    std::cerr.flush();
 }
    
 void CMap::OnInit()
