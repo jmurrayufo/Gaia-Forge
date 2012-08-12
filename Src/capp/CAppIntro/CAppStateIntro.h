@@ -6,14 +6,17 @@
 #include <gl/glu.h> 
 #include <iostream>
 
-#include "..\..\lib\lodepng.h"
-#include "..\CAppState.h"
+#include "../../lib/lodepng.h"
+#include "../../system/map/CTile.h"
+#include "../CAppState.h"
  
 class CAppStateIntro : public CAppState {
     private:
         static CAppStateIntro Instance;
 
         GLuint texture;
+
+        CTile x; // DEBUG
  
         int StartTime;
  

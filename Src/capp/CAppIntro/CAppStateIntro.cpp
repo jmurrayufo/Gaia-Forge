@@ -11,18 +11,19 @@ void CAppStateIntro::OnActivate() {
     // Load Simple Logo
     // TODO: Get the logo working!    // Holder for the image file, will be deleted once we are loaded!
 
+    x.OnInit();
+
     unsigned tex_width,tex_height;
 
     std::vector<unsigned char> image;
 
-    unsigned error = lodepng::decode(image,tex_width,tex_height,"gfx/smile.png");
+    unsigned error = lodepng::decode(image,tex_width,tex_height,"gfx/tiles2x2.png");
 
     if(error)
     {
         fprintf(stderr,"lodepng::decode error: %s\n",lodepng_error_text(error));
         return;
     }
-
     glGenTextures( 1, &texture );
     glBindTexture(GL_TEXTURE_2D,(&texture)[0]);
 
@@ -66,6 +67,7 @@ void CAppStateIntro::OnRenderGL() {
         glTexCoord2d( 1, 1 );    glVertex2f( 50+128, 50+128 );
         glTexCoord2d( 1, 0 );    glVertex2f( 50+128, 50 );
     glEnd();
+    x.OnRenderGL(0,0);
     SDL_GL_SwapBuffers();
 }
  
