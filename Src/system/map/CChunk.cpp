@@ -23,11 +23,11 @@ void CChunk::OnCleanup()
 {
     for (int i = 0 ; i<(CHUNK_X_DEM * CHUNK_Y_DEM) ; ++i)
     {
-        delete ChunkVect[i];
-        delete ChunkWallVect[i];
+        //delete ChunkVect[i];
+        //delete ChunkWallVect[i];
     }
-    ChunkVect.clear();
-    ChunkWallVect.clear();
+    //ChunkVect.clear();
+    //ChunkWallVect.clear();
 
     // Make this clean up stuff!
 }
