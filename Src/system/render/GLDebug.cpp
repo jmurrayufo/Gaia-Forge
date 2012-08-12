@@ -20,11 +20,11 @@ void GLDebug::Init()
 
 void GLDebug::DrawLine( float x1 , float y1 , float x2 , float y2)
 {
-    GLDebug::DrawLine(x1,y1,x2, y2,colors);
+    GLDebug::DrawLine(x1,y1,x2,y2,colors);
 }
 
 
-void GLDebug::DrawLine(float x1,float y1,float x2, float y2,GLfloat *funcColors)
+void GLDebug::DrawLine( float x1, float y1, float x2, float y2, GLfloat *funcColors )
 {
     glDisable(GL_TEXTURE_2D);
     glLineWidth(lineWidth);
@@ -46,8 +46,8 @@ void GLDebug::DrawPoint(float x1,float y1,GLfloat* funcColors)
 {
     glDisable(GL_TEXTURE_2D);
     glColor4f(funcColors[0],funcColors[1],funcColors[2],funcColors[3]);
-    glBlendFunc(GL_DST_ALPHA,GL_ONE_MINUS_DST_ALPHA);
     glPointSize(lineWidth);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glBegin(GL_POINTS);
         glVertex2f(x1, y1);
     glEnd();
