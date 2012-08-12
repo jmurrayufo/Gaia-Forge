@@ -65,7 +65,7 @@ void CAppStateGame::OnActivate() {
 
         if(!CEntity::EntityList[i]) 
             continue;
-        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi2.png")==false)
+        if(CEntity::EntityList[i]->OnLoadGL("gfx\\yoshi.png")==false)
         {
             fprintf(stderr,"%s:%d\n    Failed to OnLoadGL(char) for i=%d\n",__FILE__,__LINE__,i);
             CEntity::EntityList.erase(CurrentEnt);
