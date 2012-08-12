@@ -24,7 +24,7 @@
 #include "CAppStateManager.h"
 
 /*!
-   Primary class to run all aspect of the game from load to close. 
+   \brief Primary class to run all aspect of the game from load to close. 
 */
 
 //==============================================================================

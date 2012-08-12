@@ -21,7 +21,7 @@ struct Buf_GL_LINES_struct
 }Buf_GL_LINES_struct;
 
 /*!
-    Buffer class to draw large amounts of lines and dots at once. 
+    \brief Buffer class to draw large amounts of lines and dots at once. 
 
     This is currently unused. 
 */

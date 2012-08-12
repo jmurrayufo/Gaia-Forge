@@ -4,7 +4,7 @@
 #include "..\system\controls\CEvent.h"
 
 /*!
-    Pure virtual class to template out game states. 
+    \brief Pure virtual class to template out game states. 
 
     All game states MUST implement these functions. This class is empty otherwise
 */

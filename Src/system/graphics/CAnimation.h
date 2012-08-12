@@ -5,7 +5,7 @@
 #include <assert.h>
 
 /*!
-    Maintain a counter for animation. 
+    \brief Maintain a counter for animation. 
 */
 
 class CAnimation 
