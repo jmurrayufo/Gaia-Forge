@@ -3,7 +3,7 @@
 
 //==============================================================================
 void CApp::OnCleanup() {
-   CStateManager::SetActiveAppState(APPSTATE_NONE);
+   CAppStateManager::SetActiveAppState(APPSTATE_NONE);
    SDL_FreeSurface(Surf_Display);
    SDL_Quit();
 }

@@ -44,7 +44,7 @@ bool CApp::OnInit() {
 
     SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
 
-    CStateManager::SetActiveAppState(APPSTATE_INTRO); // This will soon be intro
+    CAppStateManager::SetActiveAppState(APPSTATE_INTRO); // This will soon be intro
     return true;
 }
 

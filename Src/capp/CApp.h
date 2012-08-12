@@ -21,7 +21,7 @@
 #include "..\system\controls\CCamera.h"
 #include "..\system\controls\CEvent.h"
 #include "..\system\graphics\CAnimation.h"
-#include "CStateManager.h"
+#include "CAppStateManager.h"
 
 //==============================================================================
 class CApp : public CEvent {

@@ -46,6 +46,10 @@ OBJ_DEBUG += capp\CApp_OnEvent.o
 OBJ_DEBUG += capp\CApp_OnInit.o 
 OBJ_DEBUG += capp\CApp_OnLoop.o 
 OBJ_DEBUG += capp\CApp_OnRender.o 
+OBJ_DEBUG += capp\CAppGame\CAppStateGame.o 
+OBJ_DEBUG += capp\CAppIntro\CAppStateIntro.o 
+OBJ_DEBUG += capp\CAppState.o 
+OBJ_DEBUG += capp\CAppStateManager.o 
 OBJ_DEBUG += entities\CEntity.o 
 OBJ_DEBUG += entities\player\CPlayer.o 
 OBJ_DEBUG += lib\lodepng.o
@@ -63,10 +67,6 @@ OBJ_DEBUG += system\map\CTile.o
 OBJ_DEBUG += system\noise\Noise.o
 OBJ_DEBUG += system\render\GLDebug.o 
 OBJ_DEBUG += system\render\GLFuncs.o 
-OBJ_DEBUG += capp\CStateManager.o 
-OBJ_DEBUG += capp\CAppState.o 
-OBJ_DEBUG += capp\CAppGame\CAppStateGame.o 
-OBJ_DEBUG += capp\CAppIntro\CAppStateIntro.o 
 
 OBJ_RELEASE = $(OBJDIR_RELEASE)\\CTile.o $(OBJDIR_RELEASE)\\CSurface.o $(OBJDIR_RELEASE)\\CPlayer.o $(OBJDIR_RELEASE)\\CMap.o $(OBJDIR_RELEASE)\\CFPS.o $(OBJDIR_RELEASE)\\CEvent.o $(OBJDIR_RELEASE)\\CEntityCol.o $(OBJDIR_RELEASE)\\CEntity.o $(OBJDIR_RELEASE)\\CCamera.o $(OBJDIR_RELEASE)\\CArea.o $(OBJDIR_RELEASE)\\CApp_OnRender.o $(OBJDIR_RELEASE)\\CApp_OnLoop.o $(OBJDIR_RELEASE)\\CApp_OnInit.o $(OBJDIR_RELEASE)\\CApp_OnEvent.o $(OBJDIR_RELEASE)\\CApp_OnCleanup.o $(OBJDIR_RELEASE)\\CApp.o $(OBJDIR_RELEASE)\\CAnimation.o
 

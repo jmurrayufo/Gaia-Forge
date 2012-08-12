@@ -5,7 +5,7 @@
 void CApp::OnEvent(SDL_Event* Event) {
     CEvent::OnEvent(Event);
  
-    CStateManager::OnEvent(Event);
+    CAppStateManager::OnEvent(Event);
 }
 
 void CApp::OnExit() {

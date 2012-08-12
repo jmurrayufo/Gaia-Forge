@@ -1,6 +1,6 @@
 #include "CAppStateIntro.h"
  
-#include "..\CStateManager.h"
+#include "..\CAppStateManager.h"
  
 CAppStateIntro CAppStateIntro::Instance;
  
@@ -41,7 +41,7 @@ void CAppStateIntro::OnDeactivate() {
  
 void CAppStateIntro::OnLoop() {
     if(StartTime + 3000 < SDL_GetTicks()) {
-        CStateManager::SetActiveAppState(APPSTATE_GAME);
+        CAppStateManager::SetActiveAppState(APPSTATE_GAME);
     }
 }
  

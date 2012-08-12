@@ -4,7 +4,7 @@
 //==============================================================================
 void CApp::OnRender() 
 {
-    CStateManager::OnRenderGL();
+    CAppStateManager::OnRenderGL();
 
     // NOTE: OpenGL flip screen goes here?
 }

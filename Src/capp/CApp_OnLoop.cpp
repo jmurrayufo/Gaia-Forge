@@ -3,7 +3,7 @@
 
 //==============================================================================
 void CApp::OnLoop() {
-    CStateManager::OnLoop();
+    CAppStateManager::OnLoop();
  
     CFPS::FPSControl.OnLoop();
  

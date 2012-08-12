@@ -1,5 +1,5 @@
-#ifndef _CSTATEMANAGER_H_
-    #define _CSTATEMANAGER_H_
+#ifndef _CAPPSTATEMANAGER_H_
+    #define _CAPPSTATEMANAGER_H_
 
 #include "CAppState.h"
 
@@ -11,7 +11,7 @@ enum {
     APPSTATE_DEBUG
 };
 
-class CStateManager {
+class CAppStateManager {
 private:
     static CAppState* ActiveAppState;
 
@@ -28,4 +28,4 @@ public:
     static CAppState* GetActiveAppState();
 };
 
-#endif //_CSTATEMANAGER_H_
+#endif //_CAPPSTATEMANAGER_H_
