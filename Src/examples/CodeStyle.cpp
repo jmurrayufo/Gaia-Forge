@@ -14,6 +14,10 @@ int foo(int x, int y)   // Spaces after the ,
     }
 }
 
+// Class Header Files
+
+// Class Source Files
+
 // TODO: Add the following to the code style sheet
 /*
     Comments
