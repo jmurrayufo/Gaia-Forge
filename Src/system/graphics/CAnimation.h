@@ -4,6 +4,9 @@
 #include <SDL.h>
 #include <assert.h>
 
+/*!
+    Maintain a counter for animation. 
+*/
 
 class CAnimation 
 {

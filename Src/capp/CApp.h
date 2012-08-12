@@ -23,6 +23,10 @@
 #include "..\system\graphics\CAnimation.h"
 #include "CAppStateManager.h"
 
+/*!
+   Primary class to run all aspect of the game from load to close. 
+*/
+
 //==============================================================================
 class CApp : public CEvent {
    private:

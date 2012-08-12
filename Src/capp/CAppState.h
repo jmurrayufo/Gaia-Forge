@@ -2,6 +2,12 @@
     #define _CAPPSTATE_H_
  
 #include "..\system\controls\CEvent.h"
+
+/*!
+    Pure virtual class to template out game states. 
+
+    All game states MUST implement these functions. This class is empty otherwise
+*/
  
 class CAppState : public CEvent {
     public:

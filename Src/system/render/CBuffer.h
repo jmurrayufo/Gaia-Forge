@@ -20,7 +20,11 @@ struct Buf_GL_LINES_struct
     GLfloat color[4];
 }Buf_GL_LINES_struct;
 
-// Sprite class to be done...
+/*!
+    Buffer class to draw large amounts of lines and dots at once. 
+
+    This is currently unused. 
+*/
 
 class CBuffer {
 private:
