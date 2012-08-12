@@ -8,8 +8,6 @@ CEntity::CEntity()
 
     CanJump=false;
 
-    Surf_Entity = NULL;
-
     X = 0;
     Y = 0;
 
@@ -160,12 +158,6 @@ void CEntity::OnLoop()
     OnMove(SpeedX, SpeedY);
 }
 
-void CEntity::OnRender(SDL_Surface* Surf_Display) {
-    if(Surf_Entity == NULL || Surf_Display == NULL) return;
-
-    // TODO: Get this style of code moved over to the GL system
-    //CSurface::OnDraw(Surf_Display, Surf_Entity, X - CCamera::CameraControl.GetX(), Y - CCamera::CameraControl.GetY(), CurrentFrameCol * Width, (CurrentFrameRow + Anim_Control.GetCurrentFrame()) * Height, Width, Height);
-}
 
 
 

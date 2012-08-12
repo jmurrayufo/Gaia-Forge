@@ -15,10 +15,7 @@ void CPlayer::OnLoop() {
     CEntity::OnLoop();
 }
 
-void CPlayer::OnRender(SDL_Surface* Surf_Display) {
-    CEntity::OnRender(Surf_Display);
-}
-
+\
 void CPlayer::OnCleanup() {
     CEntity::OnCleanup();
 }

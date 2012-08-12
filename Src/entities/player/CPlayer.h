@@ -11,8 +11,6 @@ class CPlayer : public CEntity {
 
         void OnLoop();
 
-        void OnRender(SDL_Surface* Surf_Display);
-
         void OnCleanup();
 
         void OnAnimate();

@@ -6,12 +6,13 @@
 #include <gl/glu.h>
 #include <math.h> // DEBUG
 
-#include "..\lib\lodepng.h"
+#include "../lib/lodepng.h"
 
-#include "..\system\graphics\CAnimation.h"
-#include "..\system\controls\CCamera.h"
-#include "..\system\controls\CFPS.h"
-#include "..\system\render\GLDebug.h"
+#include "../system/graphics/CAnimation.h"
+#include "../system/controls/CCamera.h"
+#include "../system/controls/CFPS.h"
+#include "../system/render/GLDebug.h"
+#include "../system/graphics/VidMem.h"
 
 enum {
     ENTITY_TYPE_GENERIC = 0,
@@ -35,8 +36,9 @@ class CEntity {
         //! Store the animation information to correctly draw each frame. 
         CAnimation      Anim_Control;
 
-        SDL_Surface*    Surf_Entity; //To be removed
-        GLuint          texture;         // This is a handle to our texture object
+        //SDL_Surface*    Surf_Entity; //To be removed
+        GLuint  texture;         // This is a handle to our texture object
+        VidMem  *Texture;
 
         // Texture sizes. These should eventaully be moved to the texture handling class. 
         unsigned int    tex_height;
@@ -93,8 +95,6 @@ class CEntity {
         virtual bool OnLoadGL(const char* File);
 
         virtual void OnLoop();
-
-        virtual void OnRender(SDL_Surface* Surf_Display);
 
         virtual void OnRenderGL();
 
