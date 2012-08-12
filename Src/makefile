@@ -19,12 +19,12 @@ LIB =  -lmingw32 -lSDLmain -lSDL -lopengl32 -lglu32 -lm
 LDFLAGS = 
 
 INC_DEBUG =  $(INC)
-CFLAGS_DEBUG =  $(CFLAGS) -g
+CFLAGS_DEBUG =  $(CFLAGS) -ggdb
 RESINC_DEBUG =  $(RESINC)
 RCFLAGS_DEBUG =  $(RCFLAGS)
 LIBDIR_DEBUG =  $(LIBDIR)
 LIB_DEBUG = $(LIB)
-LDFLAGS_DEBUG =  $(LDFLAGS) 
+LDFLAGS_DEBUG =  $(LDFLAGS)
 OBJDIR_DEBUG = obj\\Debug
 DEP_DEBUG = 
 OUT_DEBUG = bin\\Debug\\Gaia-Forge.exe
