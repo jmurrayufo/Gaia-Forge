@@ -2,8 +2,14 @@
 
 CTile::CTile()
 {
+    Texture=NULL;
     tileID = 0;
     collideable = false;
+}
+
+CTile::~CTile()
+{
+    OnCleanup();
 }
 
 CTile::CTile(short TileID, bool Collideable)
@@ -12,17 +18,30 @@ CTile::CTile(short TileID, bool Collideable)
     collideable = Collideable;
 }
 
+void CTile::OnInit()
+{
+    VidMem::InitTexture(Texture,"gfx/tiles2x2.png");
+}
 
 bool CTile::Collision()
 {
     return collideable;
 }
 
+void CTile::OnCleanup()
+{
+    //Texture->DeleteTexture();
+}
 
 void CTile::OnRenderGL(float x, float y)
 {
-    std::cout << "print tile to screen at x y coords";
-
-    //TODO:  write function to draw tile to screen here
+    glBindTexture(GL_TEXTURE_2D,Texture->texture);
+    //I'm going to draw stuff state machine call
+    glBegin(GL_QUADS);                                   
+        glTexCoord2d( 0, 0 );    glVertex2f( x,     y );
+        glTexCoord2d( 0, 1 );    glVertex2f( x,     y+16 );
+        glTexCoord2d( 1, 1 );    glVertex2f( x+16, y+16 );
+        glTexCoord2d( 1, 0 );    glVertex2f( x+16, y );
+    glEnd();
     return;
 }

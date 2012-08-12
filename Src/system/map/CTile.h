@@ -2,7 +2,13 @@
 #define _CTILE_H_
 
 #include <iostream>
+#include <gl/gl.h>
+#include <gl/glu.h> 
+#include <assert.h>
+#include <SDL.h>
+
 #include "..\..\Define.h"
+#include "..\graphics\VidMem.h"
 
 //Tiles are defined as Square
 
@@ -21,12 +27,24 @@ public:
 
     short int tileID;
 
+    //! The texture stored in a video management object. 
+    VidMem *Texture;
+
 public:
     CTile();
+    ~CTile();
     CTile(short TileID, bool Collideable = 1);
     bool Collision();
 
-    /*
+    /*!
+        Clean up any memory associated with this CTile
+    */
+    void OnCleanup();
+
+
+    void OnInit();
+
+    /*!
         Render the tile to the given location on the screen. 
     */
     void OnRenderGL(float x, float y);
