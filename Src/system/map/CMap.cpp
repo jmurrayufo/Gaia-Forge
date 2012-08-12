@@ -2,20 +2,41 @@
 
 CMap::CMap()
 {
-    X=0;
-    Y=0;
-    Chunks.reserve( MAP_WORLD_WIDTH * MAP_WORLD_HEIGHT );
-    for (int i = 0; i < MAP_WORLD_WIDTH * MAP_WORLD_HEIGHT; ++i)
+    // Set initial values
+    XCam=0;
+    YCam=0;
+    Width=0;
+    Height=0;
+    SeaLevel=0;
+    Seed=0;
+
+    // Setup the basic chunks
+    //Chunks.reserve( Width * Height );
+    for (int i = 0; i < Width * Height; ++i)
     {
+        // TODO: Put ACTAUL chunks here
         Chunks.push_back((CChunk*)i);
     }
 }
 
 CMap::~CMap()
 {
-    for( std::vector<CChunk*>::iterator i = Chunks.begin() ; i!=Chunks.end() ; ++i )
-        (*i)->OnCleanup();
-    Chunks.clear();
+    std::cerr << "Called CMap::~CMap()" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
+    std::cerr.flush();
+    OnCleanup();
+    std::cerr << "Finished CMap::~CMap()" << std::endl << "    " << __FILE__ << __LINE__ << std::endl;
+    std::cerr.flush();
+}
+   
+void CMap::OnInit()
+{
+    if(Chunks.size())
+        OnCleanup();
+    Chunks.reserve( Width * Height );
+    for (int i = 0; i < Width * Height; ++i)
+    {
+        Chunks.push_back((CChunk*)i);
+    }
 }
 
 void CMap::OnLoad(const char* File)
@@ -44,11 +65,11 @@ void CMap::OnLoop()
 
 void CMap::OnRenderGL(float x,float y,float w,float h)
 {
-    CChunk *currentChunk=(CChunk*)-1;
+    CChunk *currentChunk=(CChunk*)-1; // Debug code. We needed the initial chunk to not be zero. 
     int currentChunkX;
     int currentChunkY;
 
-    for (int j = 0; j < h; j+=16) // Tile Size
+    for (int j = 0; j < h+1; j+=16) // Tile Size
     {
         float y_world = j/16 + y - h/(2*16); // j and h must be converted to World Tile Coords
         float y_screen = (floor(y_world) - y_world) + j;
@@ -59,12 +80,12 @@ void CMap::OnRenderGL(float x,float y,float w,float h)
         {
             continue; 
         }
-        if(currentChunkY>=MAP_WORLD_HEIGHT)
+        if(currentChunkY>=Height)
         {
             break;
         }
 
-        for (int i = 0; i < w; i+=16)
+        for (int i = 0; i < w+1; i+=16)
         {
             float x_world = i/16 + x - w/(2*16); // j and h must be converted to World Tile Coords
             float x_screen = (floor(x_world) - x_world) + i;
@@ -76,16 +97,19 @@ void CMap::OnRenderGL(float x,float y,float w,float h)
             {
                 continue; 
             }
-            if(currentChunkX>=MAP_WORLD_WIDTH)
+            if(currentChunkX>=Width)
             {
                 break;
             }
 
-            if(currentChunk != Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH))
+            if(currentChunk != Chunks.at(currentChunkX + currentChunkY * Width))
             {
-                currentChunk = Chunks.at(currentChunkX + currentChunkY * MAP_WORLD_WIDTH);
+                currentChunk = Chunks.at(currentChunkX + currentChunkY * Width);
             }
-
+            //std::cout << "Render @ " << x_world << "," << y_world << std::endl;
+            //std::cout << "  ChunkCords @ " << std::setw(3) << x_chunk << "," << std::setw(3) << y_chunk << std::endl;
+            //std::cout << "  Chunk      @ " << std::setw(3) << currentChunkX << "," << std::setw(3) << currentChunkY << std::endl;
+            //std::cout << "  Screen     @ " << x_screen << "," << y_screen << std::endl;
             // currentChunk now points to the chunk we want to render on. 
             // y_world: This is the world location of the current tile
             // y_screen: This is the screen (pixel based) location of the tile!
@@ -107,6 +131,8 @@ void CMap::OnRednerGL()
 
 void CMap::OnCleanup()
 {
+    if(Chunks.size()==0)
+        return;
     for( std::vector<CChunk*>::iterator i = Chunks.begin() ; i!=Chunks.end() ; ++i )
         (*i)->OnCleanup();
     Chunks.clear();
@@ -142,4 +168,14 @@ bool CMap::GenerateChunk( int x, int y, CChunk* gaia )
 
 }
 
+void CMap::SetSize(int w, int h)
+{
+    OnCleanup();
+    assert(h>0);
+    assert(w>0);
+    Height = h;
+    Width = w;
+    SeaLevel = Width*CHUNK_Y_DEM/2;
+    OnInit();
+}
 

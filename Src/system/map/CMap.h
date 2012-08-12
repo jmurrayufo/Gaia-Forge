@@ -2,6 +2,8 @@
     #define _CMAP_H_
 
 #include <vector>
+#include <iostream>
+#include <iomanip>
 #include <assert.h>
 
 
@@ -9,9 +11,6 @@
 #include "CChunk.h"
 #include "../noise/Noise.h"
 
-// This 
-#define MAP_WORLD_WIDTH    8
-#define MAP_WORLD_HEIGHT   2
 
 
 /*!
@@ -32,10 +31,18 @@ class CMap {
 
 public:
    //! Current location in the X direction in tiles.
-   float X;
-
+   float XCam;
    //! Current location in the Y direction in tiles. 
-   float Y;
+   float YCam;
+
+
+   int Width;
+
+
+   int Height;
+
+
+   float SeaLevel;
 
    //! Pointers to all the CChunks in this map
    std::vector<CChunk*> Chunks;
@@ -46,6 +53,9 @@ public:
 public:
    CMap();
    ~CMap();
+
+   // TODO: Document this function
+   void OnInit();
 
    //! Called to load a map file.
    // TODO: Finish coding this function
@@ -67,8 +77,11 @@ public:
    void OnLoop();
 
    /*! 
-      Render the current scene. 
-      This includes Background, BackgroundTiles, Tiles, and water/lava (probably in that order).
+      Render the screen at a given tile location
+      \param[in] x Lateral location in tile coords
+      \param[in] y Vertial location in tile coords
+      \param[in] w Width of the screen in pixels
+      \param[in] h Height of the screen in pixels
    */
    // TODO: Make this function
    void OnRenderGL(float x,float y,float w=WWIDTH,float h=WHEIGHT);
@@ -100,6 +113,9 @@ public:
    // TODO: Make this function
    bool GetCollision(float,float);
 
+   // TODO: Document this function
+   void SetSize(int,int);
+
    /*! Set the current screen location as an int.
       \param int[in] Left most corner of screen location in tile coords.
       \param int[in] Top most corner of screen location in tiles coords.
@@ -119,6 +135,7 @@ public:
    
    // TODO: Make this function
    int SetLocation(float,float,int,int);
+
 
 private:
    /*!
