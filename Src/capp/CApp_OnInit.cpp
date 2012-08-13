@@ -20,7 +20,7 @@ bool CApp::OnInit() {
     GLDebug::Init();
 
     // Init GL system
-    glClearColor(0, 0, 0, 0);
+    glClearColor(0, 0, 0, 1);
 
     glClearDepth(1.0f);
 
@@ -35,19 +35,20 @@ bool CApp::OnInit() {
     glMatrixMode(GL_MODELVIEW);
 
     // FIXME: One of the lower two lines throws a GL_INVALID_ENUM...
-    //glHint(GL_POINT_SMOOTH, GL_NICEST);
-    //glHint(GL_LINE_SMOOTH, GL_NICEST);
-    //glHint(GL_POLYGON_SMOOTH, GL_NICEST);
+    glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 
-    //glEnable(GL_POINT_SMOOTH);
-    //glEnable(GL_LINE_SMOOTH);
-    //glEnable(GL_POLYGON_SMOOTH);
+    glEnable(GL_POINT_SMOOTH);
+    glEnable(GL_LINE_SMOOTH);
+    glEnable(GL_POLYGON_SMOOTH);
 
     glLoadIdentity();
 
     SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
 
     CAppStateManager::SetActiveAppState(APPSTATE_INTRO);
+    std::cerr << gluErrorString(glGetError()) << std::endl;
     return true;
 }
 
