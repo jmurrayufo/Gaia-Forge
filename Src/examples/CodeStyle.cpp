@@ -38,7 +38,7 @@ public:
 
 };
 // Mark your endif to show what it links too. 
-#endif // CFoo 
+#endif // _CFOO_H_
 
 
 // Class Source Files
