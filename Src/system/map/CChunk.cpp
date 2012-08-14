@@ -23,20 +23,22 @@ void CChunk::OnCleanup()
 {
     for (int i = 0 ; i<(CHUNK_X_DEM * CHUNK_Y_DEM) ; ++i)
     {
-        //delete ChunkVect[i];
-        //delete ChunkWallVect[i];
+        if(ChunkVect[i]!=NULL)
+            delete ChunkVect[i];
+        if(ChunkWallVect[i]!=NULL)
+            delete ChunkWallVect[i];
     }
-    //ChunkVect.clear();
-    //ChunkWallVect.clear();
-
-    // Make this clean up stuff!
+    ChunkVect.clear();
+    ChunkWallVect.clear();
 }
+
 void CChunk::ChangeWallTile(int x, int y, int id)
 {   
       
     ChunkWallVect[x + (y * CHUNK_X_DEM)]= new CTile(id);
 
 }
+
 void CChunk::ChangeTile(int x, int y, int id, bool collision)
 {
     ChunkWallVect[x + (y * CHUNK_X_DEM)]= new CTile(id, collision);
