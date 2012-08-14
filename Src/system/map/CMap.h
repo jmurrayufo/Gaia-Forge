@@ -12,7 +12,7 @@
 #include "../noise/Noise.h"
 
 //! Units of pixels on the screen
-#define TILE_SIZE 16 
+#define CMAP_TILE_SIZE 16 
 
 /*!
 \brief Maintain the map of a given world. Allow the system to talk to the chunks.
