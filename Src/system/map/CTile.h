@@ -12,7 +12,8 @@
 
 //Tiles are defined as Square
 
-//Size in pixels of a tile
+// FIXME: Defines are global, we should use the class name as the first word in the define (CTILE_TILE_SIZE here)
+//! Size in pixels of a tile
 #define TILE_SIZE 16
 
 enum {
@@ -23,7 +24,7 @@ enum {
 
 class CTile {
 public:
-
+    // FIXME: member variables should be in CAPS!!!
     short int tileID;
 
     //! The texture stored in a video management object. 
@@ -32,7 +33,11 @@ public:
 public:
     CTile();
     ~CTile();
+
+    // TODO: Document function
     CTile(short TileID, bool Collideable = 1);
+    
+    // TODO: Document function
     bool Collision();
 
     /*!
