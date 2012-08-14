@@ -15,6 +15,9 @@
     This class handles having a large number of objects and entities that all share
     the same texture. 
 
+    \note This class can be used for simple texture storage, but more complex uses 
+        (animations) should use the CTexture class. 
+
 
 */
 
@@ -49,9 +52,10 @@ public:
         \note This function will first check to see if a texture has been loaded, and use 
             that rather then creating a NEW texture. In either case, a VidMem pointer is returned.
 
+        \param[in] x    Video Memory pointer that will be set to the correct location. 
+            Note: this changes the pointer!
         \param[in] File A null terminated file name to attempt to load. 
-        \return Pointer to a VidMem to use. May not be unique. Care must be taken to 
-            avoid stepping on another objects texture! 
+
 
     */
     static bool InitTexture(VidMem*& x, const char* file);
