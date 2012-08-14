@@ -22,37 +22,46 @@ class CChunk
     //      or not enough, we need to decide. Smaller chunks will result in more 
     //      processor overhead, but less memory footprint. 
 public:
-    //Storage of tile elements 
+    //! Storage of tile elements 
     std::vector<CTile*> ChunkVect;
+
+    //! Storage of wall elements 
     std::vector<CTile*> ChunkWallVect;
 
     CChunk();
     ~CChunk();
 
+    //! Allocate the memory for a CChunk.
     void OnInit();
 
-    //sets specific tile to specified properties
-    void ChangeTile(int x, int y, int id, bool collision);
-    void ChangeWallTile(int x, int y, int id);
+    //! Detect if the tile at (x,y) is solid or not. 
+    // TODO: Add CChunk::IsSolid(int, int)
+    bool IsSolid(int x, int y);
 
+    //! Set tile to a specific ID, optionally being collide-able. 
+    void SetTile(int x, int y, int id, bool collision);
 
+    //! Set tile to be a background wall, with the specific ID.
+    void SetWallTile(int x, int y, int id);
+
+    /*!
+        \note Unimplemented 
+    */
+    // TODO: Add CChunk::OnLoad(char*)
     void OnLoad(const char* File);
 
+    //! Clean up any used memory from the CChunk.
     void OnCleanup();
 
     /*!
-        Render the current chunk with the given frame
+        Render a single tile to the screen. 
+        \param[in] x    X location (on the screen) to render the tile too
+        \param[in] y    Y location (on the screen) to render the tile too
+        \param[in] x_c  x coordinate of the tile to render
+        \param[in] y_c  y coordinate of the tile to render
     */
     void OnRenderGL(float x, float y, int x_c, int y_c);
 
-    /*!
-        Take a 4 element float vector and return true if it touches this CChunk
-        \param x1[in]
-        \param x2[in]
-        \param y1[in]
-        \param y2[in]
-    */
-    
 };
 
 #endif //_CCHUNK_H_
