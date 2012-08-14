@@ -34,7 +34,6 @@ bool CApp::OnInit() {
 
     glMatrixMode(GL_MODELVIEW);
 
-    // FIXME: One of the lower two lines throws a GL_INVALID_ENUM...
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
