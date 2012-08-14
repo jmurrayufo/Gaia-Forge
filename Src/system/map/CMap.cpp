@@ -15,7 +15,7 @@ CMap::CMap()
     for (int i = 0; i < Width * Height; ++i)
     {
         // TODO: Put ACTAUL chunks here
-        Chunks.push_back((CChunk*)i);
+        Chunks.push_back(0);
     }
 }
 
@@ -61,7 +61,7 @@ void CMap::OnLoop()
 
 void CMap::OnRenderGL(float x,float y,float w,float h)
 {
-    CChunk *currentChunk=(CChunk*)-1; // Debug code. We needed the initial chunk to not be zero. 
+    CChunk *currentChunk=NULL;
     int currentChunkX;
     int currentChunkY;
 
@@ -72,6 +72,7 @@ void CMap::OnRenderGL(float x,float y,float w,float h)
         float y_chunk = floor(y_world);
         currentChunkY = floor(y_world/CHUNK_Y_DEM);
 
+        // Bounds checking along the Y axis
         if(currentChunkY<0)
         {
             continue; 
@@ -88,7 +89,7 @@ void CMap::OnRenderGL(float x,float y,float w,float h)
             float x_chunk = floor(x_world);
             currentChunkX = floor(x_world/CHUNK_X_DEM);
 
-
+            // Bounds checking along the X axis
             if(currentChunkX<0)
             {
                 continue; 
@@ -102,6 +103,8 @@ void CMap::OnRenderGL(float x,float y,float w,float h)
             {
                 currentChunk = Chunks.at(currentChunkX + currentChunkY * Width);
             }
+            if(currentChunk == NULL)
+                assert(0);   // DEBUG code!
             //std::cout << "Render @ " << x_world << "," << y_world << std::endl;
             //std::cout << "  ChunkCords @ " << std::setw(3) << x_chunk << "," << std::setw(3) << y_chunk << std::endl;
             //std::cout << "  Chunk      @ " << std::setw(3) << currentChunkX << "," << std::setw(3) << currentChunkY << std::endl;
