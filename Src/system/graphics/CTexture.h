@@ -31,12 +31,13 @@ struct pointer_group {
 /*! \brief Maintain the current associated texture. 
 
 This could be an anything drawn from an image file. CTexture holds and manages the texture
-    for a parent object. 
+    for a parent object. The texture may or may not use animations.
 */
 class CTexture
 {
 public:
 
+    //TODO: Decide how we are going to manage these...
     //! Associated video memory texture
     VidMem *vidMemTexture;
 
@@ -76,9 +77,15 @@ public:
 
     void OnCleanup(void);
 
-    bool SetState(int state);
+    bool GetHasState(void);
+
+    
 
     int GetState(void);
+
+    GLuint GetTexture();
+
+    bool SetState(int state);
 
     /*! Configure a given state for the CTexture
     \param[in] state    Set the type of state we are going to use
