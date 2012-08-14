@@ -12,6 +12,7 @@ This class maintains a large segment of tile space in the game. It will load up,
 #include <vector>
 #include "CTile.h"
 #include <assert.h>
+// FIXME: Defines are global, we should use the class name as the first word...
 #define CHUNK_X_DEM 1024
 #define CHUNK_Y_DEM 1024
 

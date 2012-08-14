@@ -12,21 +12,23 @@
 /*! \brief Possible states for an entity to be in
 */
 enum {
-    TEXTURE_STATE_BASE,
-    TEXTURE_STATE_ATTACKING,
-    TEXTURE_STATE_BREAKING,
-    TEXTURE_STATE_DANCING,
-    TEXTURE_STATE_DIEING,
-    TEXTURE_STATE_JUMPING,
-    TEXTURE_STATE_MOVING,
-    TEXTURE_STATE_STANDING,
-    TEXTURE_STATE_TALKING
+    CTEXTURE_STATE_BASE,
+    CTEXTURE_STATE_ATTACKING,
+    CTEXTURE_STATE_BREAKING,
+    CTEXTURE_STATE_DANCING,
+    CTEXTURE_STATE_DIEING,
+    CTEXTURE_STATE_JUMPING,
+    CTEXTURE_STATE_MOVING,
+    CTEXTURE_STATE_STANDING,
+    CTEXTURE_STATE_TALKING
 };
 
-struct pointer_group {
-    VidMem*     vidMemTexture;
-    CAnimation* animation;
-}pointer_group;
+
+//! Unimplemented 
+struct Pointer_group {
+    VidMem*     VidMemTexture;
+    CAnimation* Animation;
+}Pointer_group;
 
 /*! \brief Maintain the current associated texture. 
 
@@ -79,7 +81,7 @@ public:
 
     bool GetHasState(void);
 
-    
+
 
     int GetState(void);
 
