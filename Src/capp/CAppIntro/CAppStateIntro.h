@@ -15,6 +15,7 @@ class CAppStateIntro : public CAppState {
         static CAppStateIntro Instance;
 
         GLuint texture;
+        GLuint StencilTex;
 
         CTile x; // DEBUG
  
