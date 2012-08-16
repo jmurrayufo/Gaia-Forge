@@ -9,7 +9,6 @@ bool CApp::OnInit() {
     }
 
     // Request use of the stencil buffer
-    SDL_GL_SetAttribute( SDL_GL_STENCIL_SIZE, 1 );
 
     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32,  SDL_GL_DOUBLEBUFFER | SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
         fprintf(stderr,"%s:%d\n    SDL_SetVideoMode call failed.\n",__FILE__,__LINE__);
