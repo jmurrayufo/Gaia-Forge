@@ -1,5 +1,5 @@
 #ifndef _CTILE_H_
-#define _CTILE_H_
+    #define _CTILE_H_
 
 #include <iostream>
 #include <gl/gl.h>
@@ -29,7 +29,9 @@ public:
 
     //! The texture stored in a video management object. 
     VidMem *Texture;
+protected:
 
+    bool collideable;
 public:
     CTile();
     ~CTile();
@@ -45,19 +47,20 @@ public:
     void OnInit();
 
 
-    // returns collideable value of tile
+    /*!
+        Get the collision value of the tile
+    */
     bool Collision();
 
-    // sets coliadability of tile
+    /*! 
+        Set the collide flag of tile
+    */
     void SetCollision(bool Collision);
 
     /*!
         Render the tile to the given location on the screen. 
     */
     void OnRenderGL(float x, float y);
-protected:
-
-    bool collideable;
 };
 
 #endif

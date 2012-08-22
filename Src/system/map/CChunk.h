@@ -1,5 +1,5 @@
 #ifndef _CCHUNK_H_
-#define _CCHUNK_H_
+    #define _CCHUNK_H_
 
 /*!
 \brief Maintain a given segment of map tiles. Deal with saving/loading files from the HDD. 
