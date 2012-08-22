@@ -43,6 +43,13 @@ public:
 
 // Class Source Files
 
+//*********************
+//*** General Notes ***
+//*********************
+
+// Classes are in caps, and prefixed with a C
+class CFoo; // NOT cFoo, or cfoo
+
 // TODO: Add the following to the code style sheet
 /*
     Comments

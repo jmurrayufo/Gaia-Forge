@@ -14,6 +14,7 @@ void CaptureScreenShot();
 
 //void CaptureScreenShot(string file);
 
+//! Capture screen shot and save to file
 void CaptureScreenShot(const char* file);
 
 // Draw a box to the screen 
