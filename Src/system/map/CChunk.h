@@ -40,10 +40,10 @@ public:
     bool IsSolid(int x, int y);
 
     //! Set tile to a specific ID, optionally being collide-able. 
-    void SetTile(int x, int y, int id, bool collision);
+    void SetTile(int x, int y, short id, bool collision);
 
     //! Set tile to be a background wall, with the specific ID.
-    void SetWallTile(int x, int y, int id);
+    void SetWallTile(int x, int y, short id);
 
     /*!
         \note Unimplemented 

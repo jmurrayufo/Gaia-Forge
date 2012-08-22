@@ -23,15 +23,21 @@ void CTile::OnInit()
     VidMem::InitTexture(Texture,"gfx/tiles2x2.png");
 }
 
-bool CTile::Collision()
-{
-    return collideable;
-}
-
 void CTile::OnCleanup()
 {
     //Texture->DeleteTexture();
 }
+
+
+bool CTile::Collision()
+{
+    return collideable;
+}
+void CTile::SetCollision(bool Collision)
+{
+    collideable = Collision;
+}
+
 
 void CTile::OnRenderGL(float x, float y)
 {

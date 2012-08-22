@@ -37,16 +37,19 @@ public:
     // TODO: Document function
     CTile(short TileID, bool Collideable = 1);
     
-    // TODO: Document function
-    bool Collision();
-
     /*!
         Clean up any memory associated with this CTile
     */
     void OnCleanup();
 
-
     void OnInit();
+
+
+    // returns collideable value of tile
+    bool Collision();
+
+    // sets coliadability of tile
+    void SetCollision(bool Collision);
 
     /*!
         Render the tile to the given location on the screen. 
