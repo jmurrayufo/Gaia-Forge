@@ -5,6 +5,8 @@
 #include <map>
 #include <string>
 #include <stdio.h>  // Needed for debuggin
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 #include "VidMem.h"
 #include "CAnimation.h"
@@ -24,12 +26,6 @@ enum {
 };
 
 
-//! Unimplemented 
-struct Pointer_group {
-    VidMem*     VidMemTexture;
-    CAnimation* Animation;
-}Pointer_group;
-
 /*! \brief Maintain the current associated texture. 
 
 This could be an anything drawn from an image file. CTexture holds and manages the texture
@@ -38,10 +34,6 @@ This could be an anything drawn from an image file. CTexture holds and manages t
 class CTexture
 {
 public:
-
-    //TODO: Decide how we are going to manage these...
-    //! Associated video memory texture
-    VidMem *vidMemTexture;
 
     //! Map of the associated states and textures
     std::map<int,VidMem*> vidTextureMap;
@@ -67,25 +59,47 @@ public:
     CTexture();
     ~CTexture();
 
+    /*! 
+        \brief Load a complete texture file from a JSON texture information file.
+    */
     bool OnLoad(const char* File);
 
+    /*! 
+        \brief Load a complete texture file from a JSON texture information file.
+    */
     bool OnLoad(std::string File);
 
+    /*!
+        \brief Advance the animation frame forward if needed. 
+
+        \note Speed is assumed to be 1
+    */
     void OnLoop(void);
 
+    /*!
+        \brief Advance the animation frame forward if needed. 
+    */
     void OnLoop(int speed);
 
-    void OnRenderGL(void);
+    /*!
+        \brief Render to a given screen location
+    */
+    void OnRenderGL(int x, int y);
 
+    /*!
+        \brief Clean out all memory and return to a freshly initialized 
+    */
     void OnCleanup(void);
 
+    /*!
+        \brief Check if this CTexture needs to be put into states. Some might not!
+    */
     bool GetHasState(void);
 
-
-
+    /*!
+        \brief Get the current state of the CTexture object. 
+    */
     int GetState(void);
-
-    GLuint GetTexture();
 
     bool SetState(int state);
 
