@@ -25,6 +25,11 @@ enum {
     CTEXTURE_STATE_TALKING
 };
 
+enum {
+    CTEXTURE_FILE_TYPE_PNG,
+    CTEXTURE_FILE_TYPE_JSON,
+    CTEXTURE_FILE_TYPE_INVALID
+};
 
 /*! \brief Maintain the current associated texture. 
 
@@ -60,12 +65,12 @@ public:
     ~CTexture();
 
     /*! 
-        \brief Load a complete texture file from a JSON texture information file.
+        \brief Load a complete texture file from a JSON texture information file or just a PNG.
     */
     bool OnLoad(const char* File);
 
     /*! 
-        \brief Load a complete texture file from a JSON texture information file.
+        \brief Load a complete texture file from a JSON texture information file or just a PNG.
     */
     bool OnLoad(std::string File);
 
@@ -117,7 +122,10 @@ public:
                         int tiles=1,
                         bool oscillation=false,
                         int cols=1);
+private:
+    int DetermineFileType(const char* File);
 
+    bool LoadFromJson(const char* File);
 };
 
 #endif //_CTEXTURE_STATE_H_
